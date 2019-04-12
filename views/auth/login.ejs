@@ -1,0 +1,21 @@
+<h1>Log In</h1>
+<p>New to this site? Go to the <a href="/auth/signup">sign up page </a> instead</p>
+<form  action="/auth/login" method="post">
+  <div class="form-group row">
+      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" name = "email" id="email" placeholder="Enter email">
+  </div>
+  </div>
+  <div class="form-group row">
+      <label for="password" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" name = "password" id="password" placeholder="Enter password">
+  </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Log In</button>
+    </div>
+  </div>
+</form>
