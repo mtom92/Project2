@@ -2,6 +2,8 @@
 let express = require('express');
 //declare an express router
 let router = express.Router();
+//reference the models
+let db = require('../models')
 //declare Routes
 router.get('/login',(req,res)=>{
   res.render('auth/login')
@@ -17,6 +19,7 @@ router.get('/signup',(req,res)=>{
 
 
 router.post('/signup',(req,res)=>{
+  console.log(req.body)
   if(req.body.password !== req.body.password_verify){
     req.flash('error','passwords does not match')
     //res.render('auth/signup', {
@@ -25,8 +28,19 @@ router.post('/signup',(req,res)=>{
     res.redirect('/auth/signup')
   }
   else{
-    req.flash('success','Succesfuly logged')
-    res.redirect('/')
+    db.user.findOrCreate({
+      where: { email : req.body.email },
+      default: req.body
+    })
+    .spread((user,wasCreated) =>{
+      req.flash('success','Succesfuly logged')
+      res.redirect('/')
+    })
+    .catch((err) =>{
+      console.log('there is an error', err)
+      req.flash('error','Something went wrong')
+      res.redirect('/auth/signup')
+    })
 
   }
 
