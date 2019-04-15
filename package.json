@@ -21,6 +21,8 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-ejs-layouts": "^2.5.0",
-    "express-session": "^1.16.1"
+    "express-session": "^1.16.1",
+    "pg": "^7.9.0",
+    "sequelize": "^5.5.0"
   }
 }
