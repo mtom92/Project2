@@ -1,5 +1,4 @@
 'use strict';
-
 let bcrypt = require('bcryptjs')
 
 module.exports = (sequelize, DataTypes) => {
@@ -7,49 +6,49 @@ module.exports = (sequelize, DataTypes) => {
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
     email: {
-      type : DataTypes.STRING,
+      type: DataTypes.STRING,
       validate: {
-      isEmail : {
-        msg: 'Hey , please give me a valid email address!'
+        isEmail: {
+          msg: 'Hey, please give me a valid email address!'
         }
       }
     },
     password: {
       type: DataTypes.STRING,
-      validate : {
+      validate: {
         len: {
-          args : [8,32],
-          msg : 'Your password must be between 8 and 32 characters in length'
+          args: [8, 32],
+          msg: 'Your password must be between 8 and 32 characters in length.'
         }
       }
     },
     birthday: DataTypes.DATE,
     bio: DataTypes.TEXT,
     image: {
-      type:DataTypes.TEXT,
+      type: DataTypes.TEXT,
       validate: {
-      isUrl : {
-        msg: 'no pic?'
+        isUrl: {
+          msg: 'Aww, no pic? :('
         }
       }
     }
   }, {
     hooks: {
-      beforeCreate : (pendingUser) =>{
-        if(pendingUser && pendingUser.password){
-          //hash the password before it goes into user table
-          let hash = bcrypt.hashSync(pendingUser.password,12)
-          //reassign the password to the hashed value
+      beforeCreate: (pendingUser) => {
+        if(pendingUser && pendingUser.password) {
+          // hash the password before it goes into user table
+          let hash = bcrypt.hashSync(pendingUser.password, 12)
+
+          // Reassign the password to the hashed value
           pendingUser.password = hash
         }
       }
     }
-  });
-
-
+  })
 
   user.associate = function(models) {
     // associations can be defined here
-  };
-  return user;
-};
+  }
+
+  return user
+}

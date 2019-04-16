@@ -30,15 +30,31 @@ router.post('/signup',(req,res)=>{
   else{
     db.user.findOrCreate({
       where: { email : req.body.email },
-      default: req.body
+      defaults: req.body
     })
     .spread((user,wasCreated) =>{
-      req.flash('success','Succesfuly logged')
-      res.redirect('/')
+      if(wasCreated){
+        req.flash('success','Succesfuly logged')
+        res.redirect('/')
+      }else{
+        req.flash('error','Account already exist')
+        res.redirect('/auth/login')
+      }
+
     })
     .catch((err) =>{
+      //generic error for all cases (not okay for user to see)
       console.log('there is an error', err)
-      req.flash('error','Something went wrong')
+        //validation-specific errors (ok to show the user)
+
+      if(err && err.errors){
+        req.flash('error','Something went wrong')
+        err.errors.forEach((e) => {
+          if(e.type == 'Validation error'){
+            req.flash('error', 'Validation issue -' + e.message)
+          }
+        })
+      }
       res.redirect('/auth/signup')
     })
 
@@ -46,5 +62,10 @@ router.post('/signup',(req,res)=>{
 
 });
 
+
+//get logout
+router.get('/logout',(req,res)=>{
+  res.send('logout stub')
+})
 //export the router object so that the routes can be used
 module.exports = router;

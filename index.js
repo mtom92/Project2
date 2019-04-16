@@ -27,9 +27,14 @@ app.use((req,res,next) =>{
 })
 //include routes from controllers
 app.use('/auth', require('./controllers/auth'))
+app.use('/profile', require('./controllers/profile'))
 //make a home route GET /
 app.get('/', (req,res)=>{
   res.render('home')
 });
+//catch-all route -render the 404 page
+app.get('*',(req,res)=>{
+res.render('404')
+})
 //listen from your port
 app.listen(process.env.PORT || 3000);
