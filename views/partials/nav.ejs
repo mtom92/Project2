@@ -6,18 +6,26 @@
 
 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+  <% if(!user) { %>
   <li class="nav-item active">
     <a class="nav-link" href="/auth/login">Log In <span class="sr-only">(current)</span></a>
   </li>
   <li class="nav-item active">
     <a class="nav-link" href="/auth/signup">Sing Up</a>
   </li>
+  <%    } else {%>
+    <% if(user.admin){ %>
+      <li class="nav-item active">
+        <a class="nav-link" href="/profile/admin">Admin</a>
+      </li>
+    <% }%>
   <li class="nav-item active">
     <a class="nav-link" href="/profile">Profile</a>
   </li>
   <li class="nav-item active">
     <a class="nav-link" href="/auth/logout">Log Out</a>
   </li>
+<%  } %>
 </ul>
 </div>
 </nav>

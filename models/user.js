@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Aww, no pic? :('
         }
       }
+    },
+    admin : {
+      type: DataTypes.BOOLEAN,
+      defaultValue : false
     }
   }, {
     hooks: {

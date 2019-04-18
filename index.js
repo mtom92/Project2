@@ -6,6 +6,10 @@ let express = require('express');
 let flash = require('connect-flash');
 let layouts = require('express-ejs-layouts');
 let session = require('express-session');
+
+//Include passport configuration
+let passport = require('./config/passportConfig')
+
 //declare express app
 let app = express();
 //set view engine
@@ -20,9 +24,12 @@ app.use(session({
   saveUninitialized : true
 }))
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 //custom meddleware - write data to locals
 app.use((req,res,next) =>{
   res.locals.alerts = req.flash()
+  res.locals.user = req.user
   next()
 })
 //include routes from controllers

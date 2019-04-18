@@ -4,14 +4,19 @@ let express = require('express');
 let router = express.Router();
 //reference the models
 let db = require('../models')
+//reference to passport so we can use the authentication functions
+let passport = require('../config/passportConfig')
 //declare Routes
 router.get('/login',(req,res)=>{
   res.render('auth/login')
 });
 
-router.post('/login', (req,res)=>{
-  res.send('reached the route post login')
-})
+router.post('/login', passport.authenticate('local',{
+  successRedirect : '/profile',
+  successFlash : 'Successful !!',
+  failureRedirect : '/auth/login',
+  failureFlash : 'Invalid Credentials'
+}))
 
 router.get('/signup',(req,res)=>{
   res.render('auth/signup')
@@ -34,9 +39,15 @@ router.post('/signup',(req,res)=>{
     })
     .spread((user,wasCreated) =>{
       if(wasCreated){
-        req.flash('success','Succesfuly logged')
-        res.redirect('/')
-      }else{
+        //automatically  log the user
+        passport.authenticate('local',{
+          successRedirect : '/profile',
+          successFlash : 'Successful !!',
+          failureRedirect : '/auth/login',
+          failureFlash : 'Invalid Credentials'
+        })(req,res,next)
+      }
+      else{
         req.flash('error','Account already exist')
         res.redirect('/auth/login')
       }
@@ -65,7 +76,9 @@ router.post('/signup',(req,res)=>{
 
 //get logout
 router.get('/logout',(req,res)=>{
-  res.send('logout stub')
+  req.logout()//delete the session data for logged users
+  req.flash('success','Good bye')
+  res.redirect('/')
 })
 //export the router object so that the routes can be used
 module.exports = router;

@@ -13,7 +13,7 @@ passport.serializeUser((user,callback) =>{
   callback(null,user.id)
 })
 
-passport.deserialize((id,callback) =>{
+passport.deserializeUser((id,callback) =>{
   db.user.findByPk(id)
   .then(user =>{
     //callback (errormessage -null if none , userData - the id only in this case )
@@ -41,7 +41,7 @@ passport.use(new LocalStrategy({
       callback(null,foundUser)
     }
   })
-  .cathc(callback)
+  .catch(callback)
 }))
 
 //make sure I can use this file in the other pages
