@@ -80,5 +80,27 @@ router.get('/logout',(req,res)=>{
   req.flash('success','Good bye')
   res.redirect('/')
 })
+
+//facebook specific routes
+///////////////////////////////
+
+// get /auth/facebook (outgoing request to facebook)
+
+router.get('/facebook', passport.authenticate('facebook', {
+  scope : ['public_profile','email','user_birthday']
+}))
+
+//get /auth/callback/facebook (incoming data from facebook)
+
+router.get('/callback/facebook', passport.authenticate('facebook', {
+  successRedirect : '/profile',
+  successFlash : 'Facebook login successful',
+  failureRedirect : '/auth/login',
+  failureFlash : 'Facebook has failed you'
+}))
+
+
+
+
 //export the router object so that the routes can be used
 module.exports = router;

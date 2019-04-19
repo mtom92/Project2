@@ -53,11 +53,12 @@ passport.use(new FacebookStrategy({
   clientID : process.env.FB_APP_ID,
   clientSecret : process.env.FB_APP_SECRET,
   callbackURL : process.env.BASE_URL + '/auth/callback/facebook',
-  profileFields : ['id','email','displayName','photos'],
+  profileFields : ['id','email','displayName','photos','birthday'],
   enableProof : true
-},(facebookAccessToke,refreshToken,profile,callback) =>{
+},(facebookAccessToken,refreshToken,profile,callback) =>{
   //grab the primary email
-   let facebookEmail = profile.emails.length ? profile.emails[0] : ''
+   let facebookEmail = profile.emails.length ? profile.emails[0].value : ''
+   console.log(profile)
   //look for the email facebook gave us in our local database
   db.user.findOne({
     where : { email : facebookEmail}
@@ -67,7 +68,7 @@ passport.use(new FacebookStrategy({
       //this is a returning user - just return their facebook id and token
       existingUser.update({
         facebookId : profile.id,
-        facebookToken : facebookAccessToke
+        facebookToken : facebookAccessToken
       })
       .then( updatedUser =>{
         callback(null,updatedUser)
@@ -77,15 +78,15 @@ passport.use(new FacebookStrategy({
     else{
       //this is a new user - we need to create them
       let userNameArr = profile.displayName.split(' ')
-      let photo = profile.photos.length ? profile.photos[0] : 'https://res.cloudinary.com/dnkav9q9s/image/upload/v1555699331/sample.jpg'
+      let photo = profile.photos.length ? profile.photos[0].value : 'https://res.cloudinary.com/dnkav9q9s/image/upload/v1555699331/sample.jpg'
       db.user.findOrCreate({
         where : { facebookId : profile.id },
         defaults : {
-          facebookToken : facebookAccessToke,
+          facebookToken : facebookAccessToken,
           email : facebookEmail,
-          firstname : userNameArr[0 , userNameArr.length -2].join(' '),
-          lastname : userNameArr[userNameArr.length -1 ],
-          birthdate : profile.birthday,
+          firstname : userNameArr.length > 2  ? userNameArr.slice(0, userNameArr.length - 2).join(' ') : userNameArr[0],
+          lastname : userNameArr[userNameArr.length - 1],
+          birthday : profile._json.birthday,
           image : photo ,
           bio : 'this account was created with facebook'
         }
