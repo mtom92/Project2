@@ -1,6 +1,10 @@
+//include the variables from .env
+require('dotenv').config()
+
 //require passport and any passport strategies you wish to use
 let passport = require('passport')
 let LocalStrategy = require('passport-local').Strategy
+let FacebookStrategy = require('passport-facebook').Strategy
 
 // references to the models
 let db = require('../models')
@@ -44,5 +48,32 @@ passport.use(new LocalStrategy({
   .catch(callback)
 }))
 
+//set up facebook strategy
+passport.use(new FacebookStrategy({
+  clientID : process.env.FB_APP_ID,
+  clientSecret : process.env.FB_APP_SECRET,
+  callbackURL : process.env.BASE_URL + '/auth/callback/facebook',
+  profileFields : ['id','email','displayName','photos'],
+  enableProof : true
+},(accessToken,refreshToken,profile,callback) =>{
+  //grab the primary email
+   let facebookEmail = profile.emails.length ? profile.emails[0] : ''
+  //look for the email facebook gave us in our local database
+  db.user.findOne({
+    where : { email : facebookEmail}
+  })
+  .then(existingUser =>{
+    if(existingUser && facebookEmail){
+      //this is a returning user - just return their facebook id and token
+
+    }
+    else{
+      //this is a new user - we need to create them
+      
+    }
+  })
+  .catch()
+
+}))
 //make sure I can use this file in the other pages
 module.exports = passport

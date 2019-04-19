@@ -35,7 +35,9 @@ module.exports = (sequelize, DataTypes) => {
     admin : {
       type: DataTypes.BOOLEAN,
       defaultValue : false
-    }
+    },
+    facebookId : DataTypes.STRING,
+    facebookToken : DataTypes.STRING
   }, {
     hooks: {
       beforeCreate: (pendingUser) => {
