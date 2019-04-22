@@ -1,0 +1,46 @@
+<div class="container">
+  <form  action="/search" method="post">
+      <div class="row form-group">
+         <div class="col">
+           <input type="text" class="form-control" name="jobDescription" placeholder="e.g. Phyton">
+         </div>
+         <div class="col">
+           <input type="text" class="form-control" name="jobLocation" placeholder="e.g. Seattle">
+         </div>
+         <div class="col">
+           <div class="col align-bottom">
+             <button type="submit" class="btn btn-outline-success">Search</button>
+           </div>
+         </div>
+      </div>
+  </form>
+</div>
+<div class="container">
+  <% if(result && result.length ){ %>
+   <% result.forEach( res=>{  %>
+     <div class="card text-white bg-dark mb-3" style="max-width: 80rem;">
+       <div class="card-header form-inline">
+          <div class="form-group mb-2">
+            <p><%= res.title %></p>
+          </div>
+          <% if(user){ %>
+             <div class="form-group mx-sm-3 mb-2">
+             <a href="#">Add this Job</a>
+             </div>
+           <% }else{ %>
+            <div class="form-group mx-sm-3 mb-2">
+            <a href="/auth/signup">Add this Job</a>
+            </div>
+        <%  } %>
+
+       </div>
+        <div class="card-body">
+         <h5 class="card-title"><%= res.company %></h5>
+         <p class="card-text"><%= res.description %></p>
+        </div>
+     </div>
+   <% }) %>
+      <% }else{ %>
+         <h4>No Jobs with that description</h4>
+        <% } %>
+</div>

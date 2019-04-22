@@ -35,6 +35,7 @@ app.use((req,res,next) =>{
 //include routes from controllers
 app.use('/auth', require('./controllers/auth'))
 app.use('/profile', require('./controllers/profile'))
+app.use('/search', require('./controllers/search'))
 //make a home route GET /
 app.get('/', (req,res)=>{
   res.render('home')
