@@ -1,0 +1,11 @@
+.closeable{
+  cursor:pointer;
+}
+
+.psign{
+  margin-right: 50px;
+}
+
+a:hover {
+  text-decoration: none;
+}

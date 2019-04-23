@@ -24,6 +24,7 @@ app.use(session({
   saveUninitialized : true
 }))
 app.use(flash());
+app.use(express.static(__dirname + '/static/'))
 app.use(passport.initialize());
 app.use(passport.session());
 //custom meddleware - write data to locals
@@ -36,6 +37,7 @@ app.use((req,res,next) =>{
 app.use('/auth', require('./controllers/auth'))
 app.use('/profile', require('./controllers/profile'))
 app.use('/search', require('./controllers/search'))
+app.use('/jobs', require('./controllers/jobs'))
 //make a home route GET /
 app.get('/', (req,res)=>{
   res.render('home')

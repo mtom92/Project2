@@ -9,3 +9,26 @@
 <h3> Birthday :  <%= user.birthday%> </h3>
 
 </div>
+
+<div class="container">
+  <% if(job && job.length ){ %>
+   <% job.forEach( res=>{  %>
+     <a  href="/jobs/<%= res.id %>">
+       <div class="card text-white bg-dark mb-3" style="max-width: 80rem;">
+         <div class="card-header form-inline">
+            <div class="form-group mb-2">
+              <p><%= res.title %></p>
+            </div>
+         </div>
+          <div class="card-body">
+           <h5 class="card-title"><%= res.company %></h5>
+           <p class="card-text"><%= res.description %></p>
+          </div>
+       </div>
+     </a>
+
+   <% }) %>
+      <% }else{ %>
+         <h4>No Jobs added </h4>
+        <% } %>
+</div>
