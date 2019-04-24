@@ -24,12 +24,14 @@
     "express": "^4.16.4",
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.16.1",
+    "method-override": "^3.0.0",
     "passport": "^0.4.0",
     "passport-facebook": "^3.0.0",
     "passport-local": "^1.0.0",
     "pg": "^7.9.0",
     "request": "^2.88.0",
     "sequelize": "^5.5.0",
-    "sweetalert2": "^8.8.7"
+    "sweetalert2": "^8.8.7",
+    "textversionjs": "^1.1.3"
   }
 }

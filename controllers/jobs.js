@@ -4,6 +4,7 @@
  let router = express.Router();
  let parser = require('body-parser');
  let request = require('request');
+ let textVersion = require("textversionjs");
  //reference the models
  let db = require('../models')
 
@@ -15,7 +16,8 @@
      where : { id : req.params.id},
      include: [db.match]
    }).then(function(foundJobs) {
-     res.render('jobs/show', { job: foundJobs})
+     let description = textVersion(foundJobs.description)
+     res.render('jobs/show', { job: foundJobs , jobDescription: description })
    }).catch(function(error) {
      console.log(error)
      res.status(400).render('404')

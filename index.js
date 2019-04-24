@@ -6,6 +6,7 @@ let express = require('express');
 let flash = require('connect-flash');
 let layouts = require('express-ejs-layouts');
 let session = require('express-session');
+let methodOverride = require('method-override');
 
 //Include passport configuration
 let passport = require('./config/passportConfig')
@@ -27,6 +28,7 @@ app.use(flash());
 app.use(express.static(__dirname + '/static/'))
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride('_method'));
 //custom meddleware - write data to locals
 app.use((req,res,next) =>{
   res.locals.alerts = req.flash()
