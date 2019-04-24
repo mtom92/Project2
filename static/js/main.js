@@ -18,33 +18,34 @@ $(document).on('click', '#addSkill', function(e) {
                       confirmButtonText: 'Submit',
                       showLoaderOnConfirm: true,
                       preConfirm: (text) => {
+                        console.log((typeof text))
                         return new Promise((resolve) => {
                           setTimeout(() => {
-                            console.log('the result*************',text)
-                            if (/\d/.test(text) || !text) {
-                              swal.showValidationError('This skill is invalid ')
+                            if (!text) {
+                              swal.showValidationError('Write something')
                             }
                             resolve()
                           }, 2000)
                         })
                       },
-                      allowOutsideClick: false
+                      allowOutsideClick: true
                     }).then((result) => {
-                      if (result.value) {
-                        db.skill.findOrCreate(
-                          {where: { name: result.value}
-                        })
-                        .then(()=>{
-                             swal({
-                               type: 'success',
-                               title: 'Skill added'
-                              })
-                        }).catch(function(error) {
-                          console.log(error)
-                          res.status(400).render('404')
-                        })
 
-                      }
 
-                    })
-                });
+                     if (result.value) {
+                       $.ajax({
+                        url: '/profile',
+                        type: 'POST',
+                        data: {
+                           result: result
+                           }
+                      });
+
+                     swal({
+                       type: 'success',
+                       title: 'Skill Added!'
+                     })
+                   }
+
+            })
+        });
