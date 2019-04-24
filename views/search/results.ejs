@@ -18,13 +18,13 @@
 <div class="container">
   <% if(result && result.length ){ %>
    <% result.forEach( res=>{  %>
-     <div class="accordion" id="accordionExample">
+     <div class="accordion" id="accordionExample<%= res.id %>">
      <div class="card text-white bg-dark mb-3" style="max-width: 80rem;">
-       <div class="card-header form-inline" id="headingOne">
+       <div class="card-header form-inline" id="headingOne<%= res.id %>">
           <div class="form-group mb-2">
             <p><%= res.title %></p>
           </div>
-          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne<%= res.id %>" aria-expanded="true" aria-controls="collapseOne<%= res.id %>">
             Collapsible Group
            </button>
           <% if(user){ %>
@@ -47,7 +47,7 @@
         <%  } %>
 
        </div>
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div id="collapseOne<%= res.id %>" class="collapse" aria-labelledby="headingOne<%= res.id %>" data-parent="#accordionExample<%= res.id %>">
           <div class="card-body ">
            <h5 class="card-title"><%= res.company %></h5>
            <p class="card-text"><%= res.description %></p>
