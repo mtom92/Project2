@@ -1,4 +1,4 @@
-$(document).on('click', '#addJob', function(e) {
+$(document).on('click', '#jobButton', function(e) {
             swal({
               title: "Are you a user? ",
               type: "info",
@@ -38,13 +38,18 @@ $(document).on('click', '#addSkill', function(e) {
                         type: 'POST',
                         data: {
                            result: result
-                           }
+                         },
+                         success: function(msg) {
+                         window.location = window.location.profile;
+                          }
                       });
 
                      swal({
                        type: 'success',
                        title: 'Skill Added!'
                      })
+
+                     location.reload();
                    }
 
             })

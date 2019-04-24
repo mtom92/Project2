@@ -31,74 +31,97 @@ router.get('/admin', adminLoggedIn ,(req,res)=>{
 //post
 router.post('/', (req,res) => {
 
-      db.job.create({
-      title: req.body.title,
-      company: req.body.company,
-      description: req.body.description,
-      url: req.body.url,
-      location : req.body.location,
-      logo : req.body.logo,
-      userId : req.body.userId
-    })
-     .then(createdJob => {
-       console.log('in job.create')
-       db.match.create({
-          jobId: createdJob.id
-         }).then(createdMatch =>{
-           console.log('in match.create')
-             db.skill.findOrCreate({
-               where: { name: req.body['result[value]']}
-             })
-             .spread((skill, wasCreated) =>{
-               console.log('in skill.findOrCreate')
-               console.log("*******",req.user.id,skill.id)
-               db.userSkills.create({
-                 userId: req.user.id,
-                 skillId: skill.id
-               }).then(()=>{
+  if(!req.body['result[value]']){
+    db.job.create({
+    title: req.body.title,
+    company: req.body.company,
+    description: req.body.description,
+    url: req.body.url,
+    location : req.body.location,
+    logo : req.body.logo,
+    userId : req.body.userId
+  })
+   .then(createdJob => {
+     db.match.create({
+        jobId: createdJob.id
+       }).then(createdMatch =>{
+          res.redirect('/profile')
+           }).catch(function(error) {
+             console.log(error)
+             res.status(400).render('404')
+           })
 
-                 res.redirect('/profile')
+     }).catch(function(error) {
+       console.log(error)
+       res.status(404).render('404')
+     })
+  }
 
-               }).catch(function(error) {
-                  console.log(error)
-                 res.status(400).render('404')
-                })
 
-                    }).catch(function(error) {
-                       console.log(error)
-                      res.status(400).render('404')
-                     })
-
-             }).catch(function(error) {
-               console.log(error)
-               res.status(400).render('404')
-             })
-
-       }).catch(function(error) {
-         console.log(error)
-         res.status(404).render('404')
+if(req.body['result[value]']){
+  //this is dealing with the skills
+       db.skill.findOrCreate({
+         where: { name: req.body['result[value]']}
        })
+       .spread((skill, wasCreated) =>{
+
+         console.log("*******",req.user.id,skill.id)
+         db.userSkills.create({
+           userId: req.user.id,
+           skillId: skill.id
+         }).then(()=>{
+
+           res.redirect('/profile')
+
+         }).catch(function(error) {
+            console.log(error)
+           res.status(400).render('404')
+          })
+
+              }).catch(function(error) {
+                 console.log(error)
+                res.status(400).render('404')
+               })
+}
+
+
+
 
     })
+
+
+
 
 
 
 
 
 //destroy (/delete/:id) delete
- router.delete('/',(req,res)=>{
-   db.job.destroy({
-    where: { id : req.body.jobId}
-}).then(()=>{
-  res.redirect('/profile')
-})
-  .catch(error =>{
-    console.log(error)
-    res.status(404).render('404')
+
+router.delete('/',(req,res)=>{
+  db.userSkills.destroy({
+   where: { id : req.body.skillId}
+    }).then(()=>{
+     res.redirect('/profile')
+    })
+    .catch(error =>{
+      console.log(error)
+      res.status(404).render('404')
+     })
   })
 
 
- })
+ router.delete('/',(req,res)=>{
+   db.job.destroy({
+    where: { id : req.body.jobId}
+     }).then(()=>{
+      res.redirect('/profile')
+     })
+     .catch(error =>{
+       console.log(error)
+       res.status(404).render('404')
+      })
+   })
 
 //export the routes
 

@@ -17,9 +17,13 @@
   <div class="card-body">
     <ul>
     <% if(skill && skill.length ){ %>
-     <% skill.forEach( sk=>{  %>
 
-          <li> <%= sk.name%></li>
+     <% skill.forEach( sk=>{  %>
+      <form method="post" action="/profile/?_method=DELETE" >
+         <input type="hidden" name="skillId" value="<%= sk.id %>">
+          <input type="submit" value="Delete">
+       </form>
+        <li> <%= sk.name%></li>
 
      <% }) %>
      </ul>
@@ -42,12 +46,12 @@
             <div class="form-group mb-2">
             <a  href="/jobs/<%= res.id %>">  <p><%= res.title %></p> </a>
             </div>
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne<%= res.id %>" aria-expanded="true" aria-controls="collapseOne<%= res.id %>">
+             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne<%= res.id %>" aria-expanded="true" aria-controls="collapseOne<%= res.id %>">
               Collapsible Group
              </button>
              <form method="post" action="/profile/?_method=DELETE" >
-              <input type="hidden" name="jobId" value="<%= res.id %>">
-              <input type="submit" value="Delete">
+               <input type="hidden" name="jobId" value="<%= res.id %>">
+               <input type="submit" value="Delete">
              </form>
          </div>
           <div id="collapseOne<%= res.id %>" class="collapse" aria-labelledby="headingOne<%= res.id %>" data-parent="#accordionExample<%= res.id %>">

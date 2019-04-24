@@ -58,7 +58,6 @@ passport.use(new FacebookStrategy({
 },(facebookAccessToken,refreshToken,profile,callback) =>{
   //grab the primary email
    let facebookEmail = profile.emails.length ? profile.emails[0].value : ''
-   console.log(profile)
   //look for the email facebook gave us in our local database
   db.user.findOne({
     where : { email : facebookEmail}
