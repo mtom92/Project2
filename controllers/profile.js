@@ -9,10 +9,8 @@ let db = require('../models')
 let adminLoggedIn = require('../middleware/adminLoggedIn')
 let loggedIn = require('../middleware/loggedIn')
 
+let store
 //get profile
-
-
-
 router.get('/', loggedIn ,(req,res)=>{
   db.user.findOne({
     where : { id : req.user.id},
@@ -32,7 +30,7 @@ router.get('/admin', adminLoggedIn ,(req,res)=>{
 
 //post
 router.post('/', (req,res) => {
-    let jobPromise =   db.job.create({
+      db.job.create({
       title: req.body.title,
       company: req.body.company,
       description: req.body.description,
@@ -41,13 +39,19 @@ router.post('/', (req,res) => {
       logo : req.body.logo,
       userId : req.body.userId
     })
-    let matchPromise = db.match.create({
-      jobId : req.body.id
-    })
+     .then(createdJob => {
+       store = createdJob;
+       db.match.create({
+          jobId: createdJob.id
+       })
+        .then(createdMatch =>{
+          res.redirect('/profile')
+        })
+         .catch(error =>{
+           console.log(error)
+           res.status(404).render('404')
+         })
 
-    Promise.all([jobPromise,matchPromise])
-     .then(function(results){
-      res.redirect('/profile', { results })
     })
     .catch(function(error) {
       console.log(error)

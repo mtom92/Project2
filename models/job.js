@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   job.associate = function(models) {
     // associations can be defined here
     models.job.belongsTo(models.user)
+    models.job.hasOne(models.match)
   };
   return job;
 };
