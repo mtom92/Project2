@@ -10,6 +10,28 @@
 
 </div>
 
+<div class="card text-center" >
+  <div class="card-header">
+    Your skills
+  </div>
+  <div class="card-body">
+    <ul>
+    <% if(skill && skill.length ){ %>
+     <% skill.forEach( sk=>{  %>
+
+          <li> <%= sk.name%></li>
+
+     <% }) %>
+     </ul>
+        <% }else{ %>
+           <h4>No skills added </h4>
+          <% } %>
+  </div>
+  <div class="card-footer text-muted">
+    <input  id="addSkill" type="button" class="btn btn-primary" name="moreSkills" value="Add More skills">
+  </div>
+</div>
+
 <div class="container">
   <% if(job && job.length ){ %>
    <% job.forEach( res=>{  %>

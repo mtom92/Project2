@@ -14,9 +14,9 @@ let store
 router.get('/', loggedIn ,(req,res)=>{
   db.user.findOne({
     where : { id : req.user.id},
-    include: [db.job]
+    include: [db.job,db.skill]
   }).then(function(foundJobs) {
-    res.render('profile/index', { job: foundJobs.jobs })
+    res.render('profile/index', { job: foundJobs.jobs , skill : foundJobs.skills })
   }).catch(function(error) {
     console.log(error)
     res.status(400).render('404')
