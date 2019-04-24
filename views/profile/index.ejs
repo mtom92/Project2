@@ -18,6 +18,10 @@
          <div class="card-header form-inline">
             <div class="form-group mb-2">
               <p><%= res.title %></p>
+               <form method="post" action="/profile/?_method=DELETE" >
+                <input type="hidden" name="jobId" value="<%= res.id %>">
+                <input type="submit" value="Delete">
+               </form>
             </div>
          </div>
           <div class="card-body">

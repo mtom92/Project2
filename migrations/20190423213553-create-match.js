@@ -24,7 +24,13 @@ module.exports = {
         type: Sequelize.TEXT
       },
       jobId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'jobs', // name of Target model
+          key: 'id', // key in Target model that we're referencing
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,

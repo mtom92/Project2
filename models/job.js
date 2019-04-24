@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   job.associate = function(models) {
     // associations can be defined here
     models.job.belongsTo(models.user)
-    models.job.hasOne(models.match)
+    models.job.hasOne(models.match,{ foreignKey: 'jobId', onDelete: 'cascade', hooks:true })
   };
   return job;
 };

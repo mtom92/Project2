@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   match.associate = function(models) {
     // associations can be defined here
+      models.match.belongsTo(models.job)
   };
   return match;
 };

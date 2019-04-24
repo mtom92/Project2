@@ -60,6 +60,22 @@ router.post('/', (req,res) => {
 
 })
 
+
+//destroy (/delete/:id) delete
+ router.delete('/',(req,res)=>{
+   db.job.destroy({
+    where: { id : req.body.jobId}
+}).then(()=>{
+  res.redirect('/profile')
+})
+  .catch(error =>{
+    console.log(error)
+    res.status(404).render('404')
+  })
+
+
+ })
+
 //export the routes
 
 module.exports = router

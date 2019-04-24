@@ -18,11 +18,15 @@
 <div class="container">
   <% if(result && result.length ){ %>
    <% result.forEach( res=>{  %>
+     <div class="accordion" id="accordionExample">
      <div class="card text-white bg-dark mb-3" style="max-width: 80rem;">
-       <div class="card-header form-inline">
+       <div class="card-header form-inline" id="headingOne">
           <div class="form-group mb-2">
             <p><%= res.title %></p>
           </div>
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Collapsible Group
+           </button>
           <% if(user){ %>
             <div class="form-group mx-sm-3 mb-2">
               <form action="/profile" method="post">
@@ -32,7 +36,7 @@
                 <input type="hidden" name="url" value="<%= res.company_url %>">
                 <input type="hidden" name="location" value="<%= res.location %>">
                 <input type="hidden" name="logo" value="<%= res.company_logo %>">
-                <input type="hidden" name="userId" value="<%= user.id %>">                
+                <input type="hidden" name="userId" value="<%= user.id %>">
                 <button type="submit" id="addJob">Add Job</button>
                </form>
             </div>
@@ -43,11 +47,15 @@
         <%  } %>
 
        </div>
-        <div class="card-body">
-         <h5 class="card-title"><%= res.company %></h5>
-         <p class="card-text"><%= res.description %></p>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body ">
+           <h5 class="card-title"><%= res.company %></h5>
+           <p class="card-text"><%= res.description %></p>
+          </div>
         </div>
+
      </div>
+      </div>
    <% }) %>
       <% }else{ %>
          <h4>No Jobs with that description</h4>
