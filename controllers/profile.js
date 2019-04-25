@@ -66,9 +66,9 @@ if(req.body['result[value]']){
        .spread((skill, wasCreated) =>{
 
          console.log("*******",req.user.id,skill.id)
-         db.userSkills.create({
-           userId: req.user.id,
-           skillId: skill.id
+         db.userSkills.findOrCreate({
+           where : {userId: req.user.id , skillId: skill.id}
+
          }).then(()=>{
 
            res.redirect('/profile')
@@ -82,25 +82,15 @@ if(req.body['result[value]']){
                  console.log(error)
                 res.status(400).render('404')
                })
-}
-
-
-
-
+             }
     })
-
-
-
-
-
-
 
 
 //destroy (/delete/:id) delete
 
-router.delete('/',(req,res)=>{
+router.delete('/skill',(req,res)=>{
   db.userSkills.destroy({
-   where: { id : req.body.skillId}
+   where: { skillId : req.body.skillId}
     }).then(()=>{
      res.redirect('/profile')
     })
@@ -111,7 +101,7 @@ router.delete('/',(req,res)=>{
   })
 
 
- router.delete('/',(req,res)=>{
+ router.delete('/jobs',(req,res)=>{
    db.job.destroy({
     where: { id : req.body.jobId}
      }).then(()=>{

@@ -19,7 +19,7 @@
     <% if(skill && skill.length ){ %>
 
      <% skill.forEach( sk=>{  %>
-      <form method="post" action="/profile/?_method=DELETE" >
+      <form method="post" action="/profile/skill?_method=DELETE" >
          <input type="hidden" name="skillId" value="<%= sk.id %>">
           <input type="submit" value="Delete">
        </form>

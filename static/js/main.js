@@ -34,14 +34,14 @@ $(document).on('click', '#addSkill', function(e) {
 
                      if (result.value) {
                        $.ajax({
-                        url: '/profile',
-                        type: 'POST',
-                        data: {
-                           result: result
-                         },
-                         success: function(msg) {
-                         window.location = window.location.profile;
-                          }
+                          url: '/profile',
+                          type: 'POST',
+                          data: {
+                             result: result
+                                },
+                          success: function() {
+                               location.reload(true);
+                                }
                       });
 
                      swal({
@@ -49,7 +49,7 @@ $(document).on('click', '#addSkill', function(e) {
                        title: 'Skill Added!'
                      })
 
-                     location.reload();
+                     location.reload(true);
                    }
 
             })
