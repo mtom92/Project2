@@ -6,3 +6,19 @@
 
   <h5> <%= jobDescription %></h5>
 </div>
+
+<div class="container">
+  <h2> Your skills:</h2>
+
+  <% skills.forEach(s => { %>
+    <%= s.name %>
+  <% }) %>
+</div>
+
+<div class="container">
+  <h2> Job skills:</h2>
+
+  <% jobSkills.forEach(j => { %>
+    <%= j %>
+  <% }) %>
+</div>
