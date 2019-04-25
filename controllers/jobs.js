@@ -52,16 +52,22 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
                     return !!word
               });
              let uniqueMatches = [...new Set(matches)];
-             let matchesObj = {}
-             for (var i = 0; i < uniqueMatches.length; i++) {
-                matchesObj[uniqueMatches[i]] = 0
+             let matchesObj = []
+             let userSkills = {}
+             for (var i = 0; i < user.skills.length; i++) {
+               userSkills[user.skills[i].name.toLowerCase()] = 0
              }
-            let foundSkills = user.skills.map((m) =>{
-               if(matchesObj.hasOwnProperty(m)){
+             for (var i = 0; i < uniqueMatches.length; i++) {
+                matchesObj.push(uniqueMatches[i].toLowerCase())
+             }
+            console.log(matchesObj)
+            console.log(userSkills)
+            let foundSkills = matchesObj.map(m =>{
+               if(userSkills.hasOwnProperty(m)){
                  return m
                }
             })
-            console.log(foundSkills)
+           console.log(foundSkills)
              res.render('jobs/show', { job: foundJobs , jobDescription: description, jobSkills:uniqueMatches , skills:user.skills })
              })
              .catch(function(error) {
