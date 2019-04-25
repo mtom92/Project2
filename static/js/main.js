@@ -30,8 +30,6 @@ $(document).on('click', '#addSkill', function(e) {
                       },
                       allowOutsideClick: true
                     }).then((result) => {
-
-
                      if (result.value) {
                        $.ajax({
                           url: '/profile',
@@ -39,17 +37,13 @@ $(document).on('click', '#addSkill', function(e) {
                           data: {
                              result: result
                                 },
-                          success: function() {
-                               location.reload(true);
-                                }
-                      });
+                      
+                          });
 
                      swal({
                        type: 'success',
                        title: 'Skill Added!'
                      })
-
-                     location.reload(true);
                    }
 
             })

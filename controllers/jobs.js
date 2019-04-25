@@ -34,6 +34,8 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
      include: [db.match]
    }).then(function(foundJobs) {
      let description = textVersion(foundJobs.description)
+     let newDescription = foundJobs.description.split(' ')
+     console.log(newDescription)
      res.render('jobs/show', { job: foundJobs , jobDescription: description })
    }).catch(function(error) {
      console.log(error)

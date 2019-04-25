@@ -49,7 +49,7 @@
              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne<%= res.id %>" aria-expanded="true" aria-controls="collapseOne<%= res.id %>">
               Collapsible Group
              </button>
-             <form method="post" action="/profile/?_method=DELETE" >
+             <form method="post" action="/profile/jobs?_method=DELETE" >
                <input type="hidden" name="jobId" value="<%= res.id %>">
                <input type="submit" value="Delete">
              </form>

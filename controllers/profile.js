@@ -90,7 +90,7 @@ if(req.body['result[value]']){
 
 router.delete('/skill',(req,res)=>{
   db.userSkills.destroy({
-   where: { skillId : req.body.skillId}
+   where: { userId: req.user.id , skillId : req.body.skillId}
     }).then(()=>{
      res.redirect('/profile')
     })
@@ -103,7 +103,7 @@ router.delete('/skill',(req,res)=>{
 
  router.delete('/jobs',(req,res)=>{
    db.job.destroy({
-    where: { id : req.body.jobId}
+    where: { id: req.body.jobId}
      }).then(()=>{
       res.redirect('/profile')
      })
