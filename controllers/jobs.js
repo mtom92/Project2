@@ -60,15 +60,22 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
              for (var i = 0; i < uniqueMatches.length; i++) {
                 matchesObj.push(uniqueMatches[i].toLowerCase())
              }
-            console.log(matchesObj)
-            console.log(userSkills)
-            let foundSkills = matchesObj.map(m =>{
+            let foundSkillsTotal = matchesObj.map(m =>{
                if(userSkills.hasOwnProperty(m)){
                  return m
                }
             })
-           console.log(foundSkills)
-             res.render('jobs/show', { job: foundJobs , jobDescription: description, jobSkills:uniqueMatches , skills:user.skills })
+            let foundSkillsExact = foundSkillsTotal.filter(skill =>{
+              return !!skill
+            });
+
+            let percentage = (foundSkillsExact.length/foundSkillsTotal.length)*100
+            console.log(foundSkillsTotal)
+            console.log(foundSkillsExact.length)
+            console.log(foundSkillsTotal.length)
+
+             res.render('jobs/show', { job: foundJobs , jobDescription: description, jobSkills:uniqueMatches ,
+               skills:user.skills, percentage:percentage })
              })
              .catch(function(error) {
                console.log(error)
