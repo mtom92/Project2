@@ -9,19 +9,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       status: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue:'Inactive'
       },
       contact: {
         type: Sequelize.STRING
       },
       likeness: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 1
       },
       interviewDate: {
         type: Sequelize.DATE
       },
       currentPhase: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue:'Frozen'
       },
       interviewAddress: {
         type: Sequelize.TEXT

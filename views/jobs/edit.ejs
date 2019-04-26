@@ -3,7 +3,7 @@
   <div class="form-row">
   <div class="form-group col-md-4">
     <label for="status">Application status</label>
-    <select  name="status" id="status" class="form-control">
+    <select  name="status" id="status"  class="form-control">
       <option selected>Choose...</option>
       <option>Active</option>
       <option>Inactive</option>
@@ -17,11 +17,12 @@
       <option>Phone Screen</option>
       <option>Interview on site</option>
       <option>Waiting for response</option>
+      <option>Frozen</option>
     </select>
   </div>
    <div class="form-group col-md-6">
      <label for="contact">Main contact</label>
-     <input type="text" class="form-control" name="contact" id="contact" placeholder="Who's on your side?">
+     <input type="text" class="form-control" name="contact" id="contact" value="<%= match.contact %>" placeholder="Who's on your side?">
    </div>
    <div class="form-group col-md-6">
     <label for="likeness">How much you like this job??</label>
@@ -29,12 +30,12 @@
    </div>
  </div>
  <div class="form-group">
-   <label for="interviewDate" >Interview Date</label>
-   <input class="form-control" type="date"  name="interviewDate" id="interviewDate">
+   <label for="interviewDate" >Next important date related to this job</label>
+   <input class="form-control" type="date" name="interviewDate" id="interviewDate">
  </div>
  <div class="form-group">
    <label for="inputAddress2">Interview address </label>
-   <input type="text" class="form-control" name="interviewAddress" id="interviewAddress" placeholder="1234 Main St">
+   <input type="text" class="form-control" name="interviewAddress" value="<%= match.interviewAddress %>" id="interviewAddress" placeholder="1234 Main St">
  </div>
  <button type="submit" class="btn btn-primary">Sign in</button>
 </form>

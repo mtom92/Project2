@@ -14,10 +14,13 @@
 
 <div class="container">
   <h2> Your skills:</h2>
-
+<% if(skills && skills.length ){ %>
   <% skills.forEach(s => { %>
     <%= s.name %>
-  <% }) %>
+    <% }) %>
+  <% } else {%>
+    <p>No skills added </p>
+    <% } %>
 </div>
 
 <div class="container">
@@ -29,15 +32,34 @@
 </div>
 
 <div class="container">
-  <h2> Percentage:</h2>
+  <h2> Match:</h2>
 
-  <%= percentage %>
-
-</div>
-
-<div class="container">
-  <h2> Percentage:</h2>
-
-  <%= job.match.status %>
+  <%= percentage %> %
 
 </div>
+
+<% if ( job.match.status  === "Active"){ %>
+  <div class="container">
+    <h2> Job Information:</h2>
+
+  <% if(!!job.match.contact){   %>
+     <p>Your contact in this company is: <%= job.match.contact%></p>
+  <% }  else {%>
+     <p>Your contact in this company is: No one </p>
+     <% } %>
+     <p>You like this job this much: <%= job.match.likeness%></p>
+     <p>This job is in this phase: <%= job.match.currentPhase%></p>
+ <% if(!!job.match.interviewDate){   %>
+    <p>Next important date: <%= job.match.interviewDate%></p>
+ <% }  else {%>
+    <p>Next important date: Not define yet! </p>
+    <% } %>
+<% if(!!job.match.interviewAddress){   %>
+   <p>Interview Address: <%= job.match.interviewAddress%></p>
+<% }  else {%>
+   <p>Interview Address: Not define yet! </p>
+   <% } %>
+
+
+  </div>
+<% } %>

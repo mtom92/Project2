@@ -37,16 +37,18 @@ $(document).on('click', '#addSkill', function(e) {
                           data: {
                              result: result
                                 },
+                          success : function(){
+                            setTimeout(function(){ window.location.reload() }, 1500);
+
+                          }
                           });
 
                      swal({
                        type: 'success',
-                       title: 'Skill Added!'
+                       title: 'Skill Added!',
+                       showConfirmButton: false
                      })
                    }
 
             })
         });
-
-
-  

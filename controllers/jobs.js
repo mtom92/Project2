@@ -87,7 +87,17 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
 
 
  router.get('/:id/edit',(req,res) =>{
-   res.render('jobs/edit', {job:req.params.id})
+   db.job.findOne({
+     where : { id : req.params.id},
+     include: [db.match]
+   })
+   .then(foundJob =>{
+     res.render('jobs/edit', {job:req.params.id, match:foundJob.match})
+   })
+   .catch((err)=>{
+     console.log(err)
+     res.render('404')
+   })
  })
 
 
@@ -104,6 +114,7 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
     res.redirect('/jobs/' + req.params.id)
   })
   .catch((err)=>{
+    console.log(err)
     res.render('404')
   })
 })
