@@ -4,18 +4,11 @@
   <div class="form-group col-md-4">
     <label for="status">Application status</label>
     <select  name="status" id="status"  class="form-control">
-      <% if(!match.status){ %>
-        <option selected>Choose...</option>
-        <option>Active</option>
-        <option >Inactive</option>
-      <%} %>
       <% if(match.status === "Active"){ %>
-        <option>Choose...</option>
         <option selected>Active</option>
         <option >Inactive</option>
       <%} %>
       <% if(match.status === "Inactive"){ %>
-        <option>Choose...</option>
         <option >Active</option>
         <option selected>Inactive</option>
       <%} %>
@@ -25,21 +18,41 @@
   <div class="form-group col-md-4">
     <label for="currentPhase">Current Phase</label>
     <select name="currentPhase" id="currentPhase" class="form-control">
-      <option selected>Choose...</option>
-      <option>Resume sended</option>
-      <option>Phone Screen</option>
-      <option>Interview on site</option>
-      <option>Waiting for response</option>
-      <option>Frozen</option>
+       <%if( match.currentPhase == "Resume sended" ){%>
+           <option selected >Resume sended</option>
+      <%} else { %>
+           <option>Resume sended</option>
+      <%}%>
+      <%if( match.currentPhase == "Phone Screen" ){%>
+          <option selected >Phone Screen</option>
+      <%} else { %>
+          <option>Phone Screen</option>
+      <%}%>
+      <%if( match.currentPhase == "Interview on site" ){%>
+         <option selected >Interview on site</option>
+      <%} else { %>
+         <option>Interview on site</option>
+      <%}%>
+      <%if( match.currentPhase == "Waiting for response" ){%>
+        <option selected >Waiting for response</option>
+      <%} else { %>
+        <option>Waiting for response</option>
+      <%}%>
+      <%if( match.currentPhase == "Frozen" ){%>
+       <option selected >Frozen</option>
+      <%} else { %>
+       <option>Frozen</option>
+      <%}%>
     </select>
   </div>
+
    <div class="form-group col-md-6">
      <label for="contact">Main contact</label>
      <input type="text" class="form-control" name="contact" id="contact" value="<%= match.contact %>" placeholder="Who's on your side?">
    </div>
    <div class="form-group col-md-6">
     <label for="likeness">How much you like this job??</label>
-    <input type="range" class="custom-range" min="0" step="1" max="5" name="likeness" id="likeness">
+    <input type="range" class="custom-range" min="0" step="1" max="5" value= "<%= match.likeness%>" name="likeness" id="likeness">
    </div>
  </div>
  <div class="form-group">
@@ -54,6 +67,6 @@
    <label for="inputAddress2">Any comments ??? </label>
    <textarea class="form-control" type="text" id="comment" value="<%= match.comment %>" name="comment" placeholder="Add your ideas here" rows="3"></textarea>
  </div>
- <button type="submit" class="btn btn-primary">Sign in</button>
+ <button type="submit" class="btn btn-primary">Update</button>
 </form>
 </div>

@@ -1,105 +1,83 @@
-//require needed modules
-let express = require('express');
-//declare an express router
-let router = express.Router();
-//reference the models
-let db = require('../models')
-//reference to passport so we can use the authentication functions
-let passport = require('../config/passportConfig')
-//declare Routes
-router.get('/login',(req,res)=>{
-  res.render('auth/login')
-});
+// Require needed modules
+let express = require('express')
 
-router.post('/login', passport.authenticate('local',{
-  successRedirect : '/profile',
-  successFlash : 'Successful !!',
-  failureRedirect : '/auth/login',
-  failureFlash : 'Invalid Credentials'
+// Declare an express router
+let router = express.Router()
+
+// Reference the models
+let db = require('../models')
+
+// Refernce to passport so we can use the authenticate function
+let passport = require('../config/passportConfig')
+
+// Declare routes
+router.get('/login', (req, res) => {
+  res.render('auth/login')
+})
+
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/profile',
+  successFlash: 'Yay, login was successful!',
+  failureRedirect: '/auth/login',
+  failureFlash: 'Invalid Credentials!'
 }))
 
-router.get('/signup',(req,res)=>{
+router.get('/signup', (req, res) => {
   res.render('auth/signup')
-});
+})
 
-
-router.post('/signup',(req,res)=>{
-  if(req.body.password !== req.body.password_verify){
-    req.flash('error','passwords does not match')
-    //res.render('auth/signup', {
-    //  alerts:req.flash()
-    //})
+router.post('/signup', (req, res, next) => {
+  if(req.body.password !== req.body.password_verify) {
+    req.flash('error', 'Passwords do not match')
     res.redirect('/auth/signup')
   }
-  else{
+  else {
     db.user.findOrCreate({
-      where: { email : req.body.email },
+      where: { email: req.body.email },
       defaults: req.body
     })
-    .spread((user,wasCreated) =>{
-      if(wasCreated){
-        //automatically  log the user
-        passport.authenticate('local',{
-          successRedirect : '/profile',
-          successFlash : 'Successful !!',
-          failureRedirect : '/auth/login',
-          failureFlash : 'Invalid Credentials'
-        })(req,res,next)
+    .spread((user, wasCreated) => {
+      if(wasCreated) {
+        // Automatically log the new user in!
+        passport.authenticate('local', {
+          successRedirect: '/profile',
+          successFlash: 'Yay, successful account creation!',
+          failureRedirect: '/auth/login',
+          failureFlash: 'Invalid Credentials'
+        })(req, res, next)
       }
-      else{
-        req.flash('error','Account already exist')
+      else {
+        req.flash('error', 'Account already exists. Please log in!')
         res.redirect('/auth/login')
       }
-
     })
-    .catch((err) =>{
-      //generic error for all cases (not okay for user to see)
-      console.log('there is an error', err)
-        //validation-specific errors (ok to show the user)
+    .catch((err) => {
+      // Print all error info to the terminal (not okay for user to see)
+      console.log('Error in POST /auth/signup', err)
 
-      if(err && err.errors){
-        req.flash('error','Something went wrong')
+      // Generic Error for all cases
+      req.flash('error', 'Something went wrong! :(')
+
+      // Validation-specific errors (okay to show the user)
+      if(err && err.errors) {
         err.errors.forEach((e) => {
-          if(e.type == 'Validation error'){
-            req.flash('error', 'Validation issue -' + e.message)
+          if(e.type == 'Validation error') {
+            req.flash('error', 'Validation issue - ' + e.message)
           }
         })
       }
+
       res.redirect('/auth/signup')
     })
-
   }
+})
 
-});
-
-
-//get logout
-router.get('/logout',(req,res)=>{
-  req.logout()//delete the session data for logged users
-  req.flash('success','Good bye')
+// GET /auth/logout
+router.get('/logout', (req, res) => {
+  req.logout() // Delete the session data for logged in user
+  req.flash('success', 'Goodbye - see ya next time! ❤️')
   res.redirect('/')
 })
 
-//facebook specific routes
-///////////////////////////////
-
-// get /auth/facebook (outgoing request to facebook)
-
-router.get('/facebook', passport.authenticate('facebook', {
-  scope : ['public_profile','email','user_birthday']
-}))
-
-//get /auth/callback/facebook (incoming data from facebook)
-
-router.get('/callback/facebook', passport.authenticate('facebook', {
-  successRedirect : '/profile',
-  successFlash : 'Facebook login successful',
-  failureRedirect : '/auth/login',
-  failureFlash : 'Facebook has failed you'
-}))
-
-
-
-
-//export the router object so that the routes can be used
-module.exports = router;
+// Export the router object so that the routes can used elsewhere
+module.exports = router
