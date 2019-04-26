@@ -37,7 +37,6 @@ $(document).on('click', '#addSkill', function(e) {
                           data: {
                              result: result
                                 },
-                      
                           });
 
                      swal({
@@ -48,3 +47,6 @@ $(document).on('click', '#addSkill', function(e) {
 
             })
         });
+
+
+  

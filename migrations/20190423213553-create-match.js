@@ -20,6 +20,9 @@ module.exports = {
       interviewDate: {
         type: Sequelize.DATE
       },
+      currentPhase: {
+        type: Sequelize.STRING
+      },
       interviewAddress: {
         type: Sequelize.TEXT
       },

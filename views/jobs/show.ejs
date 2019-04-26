@@ -2,6 +2,11 @@
   <div class="container">
     <h1><%= job.title %></h1>
     <img class="logo" src="<%= job.logo%>" alt="">
+    <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
+  Start Journey
+  </a>
+
+
   </div>
 
   <h5> <%= jobDescription %></h5>
@@ -27,5 +32,12 @@
   <h2> Percentage:</h2>
 
   <%= percentage %>
+
+</div>
+
+<div class="container">
+  <h2> Percentage:</h2>
+
+  <%= job.match.status %>
 
 </div>

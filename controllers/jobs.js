@@ -70,9 +70,6 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
             });
 
             let percentage = (foundSkillsExact.length/foundSkillsTotal.length)*100
-            console.log(foundSkillsTotal)
-            console.log(foundSkillsExact.length)
-            console.log(foundSkillsTotal.length)
 
              res.render('jobs/show', { job: foundJobs , jobDescription: description, jobSkills:uniqueMatches ,
                skills:user.skills, percentage:percentage })
@@ -89,6 +86,27 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
    })
 
 
+ router.get('/:id/edit',(req,res) =>{
+   res.render('jobs/edit', {job:req.params.id})
+ })
+
+
+ router.put('/:id/edited',(req,res)=>{
+
+  db.match.update(
+    req.body,
+    {
+     where: { jobId: req.params.id }
+     }
+  )
+  .then((updatedRows)=>{
+    console.log('its working', updatedRows);
+    res.redirect('/jobs/' + req.params.id)
+  })
+  .catch((err)=>{
+    res.render('404')
+  })
+})
 
 
 

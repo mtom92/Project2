@@ -32,31 +32,39 @@ router.get('/admin', adminLoggedIn ,(req,res)=>{
 router.post('/', (req,res) => {
 
   if(!req.body['result[value]']){
-    db.job.create({
-    title: req.body.title,
-    company: req.body.company,
-    description: req.body.description,
-    url: req.body.url,
-    location : req.body.location,
-    logo : req.body.logo,
-    userId : req.body.userId
+    db.job.findOrCreate({
+      where : {
+      title: req.body.title,
+      company: req.body.company,
+      description: req.body.description,
+      url: req.body.url,
+      location : req.body.location,
+      logo : req.body.logo,
+      userId : req.body.userId
+    }
+
   })
-   .then(createdJob => {
-     db.match.create({
-        jobId: createdJob.id
-       }).then(createdMatch =>{
-          res.redirect('/profile')
-           }).catch(function(error) {
-             console.log(error)
-             res.status(400).render('404')
-           })
+   .spread((createdJob , wasCreated) =>{
+     if(wasCreated){
+         db.match.findOrCreate({
+           where:{jobId: createdJob.id}
+           }).then(createdMatch =>{
+              res.redirect('/profile')
+               }).catch(function(error) {
+                 console.log(error)
+                 res.status(400).render('404')
+               })
 
-     }).catch(function(error) {
-       console.log(error)
-       res.status(404).render('404')
-     })
-  }
+     }else{
+       res.redirect('/profile')
+     }
+   })
+   .catch(function(error) {
+    console.log(error)
+    res.status(400).render('404')
+  })
 
+}
 
 if(req.body['result[value]']){
   //this is dealing with the skills
@@ -64,8 +72,6 @@ if(req.body['result[value]']){
          where: { name: req.body['result[value]']}
        })
        .spread((skill, wasCreated) =>{
-
-         console.log("*******",req.user.id,skill.id)
          db.userSkills.findOrCreate({
            where : {userId: req.user.id , skillId: skill.id}
 

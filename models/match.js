@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
     contact: DataTypes.STRING,
     likeness: DataTypes.INTEGER,
+    currentPhase:DataTypes.STRING,
     interviewDate: DataTypes.DATE,
     interviewAddress: DataTypes.TEXT,
     jobId: DataTypes.INTEGER
