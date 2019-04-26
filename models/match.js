@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     currentPhase:DataTypes.STRING,
     interviewDate: DataTypes.DATE,
     interviewAddress: DataTypes.TEXT,
+    comment: DataTypes.TEXT,
     jobId: DataTypes.INTEGER
   }, {});
   match.associate = function(models) {

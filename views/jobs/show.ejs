@@ -2,10 +2,12 @@
   <div class="container">
     <h1><%= job.title %></h1>
     <img class="logo" src="<%= job.logo%>" alt="">
-    <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
-  Start Journey
-  </a>
 
+  <%  if(job.match.status  === "Inactive"){ %>
+      <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
+    Start Journey
+    </a>
+    <% } %>
 
   </div>
 
@@ -34,7 +36,7 @@
 <div class="container">
   <h2> Match:</h2>
 
-  <%= percentage %> %
+  <%= percentage.toFixed(1) %> %
 
 </div>
 
@@ -49,17 +51,26 @@
      <% } %>
      <p>You like this job this much: <%= job.match.likeness%></p>
      <p>This job is in this phase: <%= job.match.currentPhase%></p>
- <% if(!!job.match.interviewDate){   %>
+  <% if(!!job.match.interviewDate){   %>
     <p>Next important date: <%= job.match.interviewDate%></p>
- <% }  else {%>
+  <% }  else {%>
     <p>Next important date: Not define yet! </p>
     <% } %>
-<% if(!!job.match.interviewAddress){   %>
-   <p>Interview Address: <%= job.match.interviewAddress%></p>
-<% }  else {%>
-   <p>Interview Address: Not define yet! </p>
-   <% } %>
+  <% if(!!job.match.interviewAddress){   %>
+     <p>Interview Address: <%= job.match.interviewAddress%></p>
+  <% }  else {%>
+     <p>Interview Address: Not define yet! </p>
+     <% } %>
+  <% if(!!job.match.comment){   %>
+    <p>Ideas: <%= job.match.comment%></p>
+  <% }  else {%>
+    <p>Ideas: No Ideas?? </p>
+    <% } %>
 
-
+    <%  if(job.match.status  === "Active"){ %>
+        <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
+      Change Information
+      </a>
+      <% } %>
   </div>
 <% } %>

@@ -56,7 +56,7 @@ router.post('/', (req,res) => {
                })
 
      }else{
-       res.redirect('/profile')
+       res.redirect('/search/')
      }
    })
    .catch(function(error) {

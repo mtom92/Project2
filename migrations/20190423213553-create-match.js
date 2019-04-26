@@ -29,6 +29,9 @@ module.exports = {
       interviewAddress: {
         type: Sequelize.TEXT
       },
+      comment: {
+        type: Sequelize.TEXT
+      },
       jobId: {
         type: Sequelize.INTEGER,
         references: {
