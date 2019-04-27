@@ -103,9 +103,16 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
 
 
  router.put('/:id/edited',(req,res)=>{
+  let cuerpo = req.body
+  for (things in cuerpo) {
+    if(!cuerpo[things]){
+      delete cuerpo[things]
+    }
+  }
+
 
   db.match.update(
-    req.body,
+    cuerpo,
     {
      where: { jobId: req.params.id }
      }
