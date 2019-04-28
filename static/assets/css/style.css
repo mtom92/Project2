@@ -63,6 +63,10 @@ a:hover {
  text-decoration: underline;
 }
 
+#testphothos{
+	height: 300px;
+}
+
 /*Boxed Layout
 ------------------------------------*/
 .wrapper {
