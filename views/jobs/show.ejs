@@ -6,8 +6,8 @@
            <!-- Left Inner -->
 
              <div class="left-inner">
-               <img src="<%= job.logo%>" alt="logo">
-               <h3><%= job.title %></h3>
+               <img id="joblogos" src="<%= job.logo%>" alt="logo">
+               <h3> <span class="color-blue">Job Title :</span> <%= job.title %></h3>
                 <%  if(job.match.status  === "Inactive"){ %>
                     <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
                   Start Journey

@@ -63,8 +63,15 @@ a:hover {
  text-decoration: underline;
 }
 
+/*Created By Miguel
+------------------------------------*/
 #testphothos{
 	height: 300px;
+}
+
+#joblogos{
+  height: 200px;
+	width: 200px;
 }
 
 /*Boxed Layout

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="sercher">
   <div class="job-img-inputs">
 				<div class="container">
           <form action="/search" method="post">
@@ -23,7 +23,7 @@
 				</div>
 			</div>
 </div>
-<div class="container">
+<div class="wrapper">
   <% if(result && result.length ){ %>
    <% result.forEach( res=>{  %>
      <div class="accordion" id="accordionExample<%= res.id %>">
