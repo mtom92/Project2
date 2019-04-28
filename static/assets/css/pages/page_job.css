@@ -6,13 +6,13 @@
 	min-height: 300px;
 	background: url(../../img/bg/11.jpg) 70% 40% no-repeat;
   background-size: cover;
-  background-position: center center;	
+  background-position: center center;
 }
 
 .job-img .job-banner {
 	padding: 20px;
 	max-width: 450px;
-	margin: 60px auto 100px;	
+	margin: 60px auto 100px;
 	background: rgba(255,255,255,0.8);
 }
 
@@ -26,7 +26,7 @@
 @media (max-width: 768px) {
 	.job-img .job-banner {
 		padding: 10px;
-		margin: 30px auto 100px;	
+		margin: 30px auto 100px;
 	}
 }
 
@@ -38,6 +38,15 @@
 	position: absolute;
 	background: rgba(0,0,0,0.9);
 }
+.sercher {
+	left: 0;
+	right: 0;
+	bottom: -7px;
+	padding: 20px 0;
+	background: rgba(0,0,0,0.9);
+}
+
+
 
 /*Job-Content
 ------------------------------------*/
