@@ -74,15 +74,25 @@
 		<script type="text/javascript" src="/assets/plugins/jquery.parallax.js"></script>
 		<script type="text/javascript" src="/assets/plugins/image-hover/js/touch.js"></script>
 		<script type="text/javascript" src="/assets/plugins/image-hover/js/modernizr.js"></script>
+    <script src="/assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
+	  <script src="/assets/plugins/sky-forms-pro/skyforms/js/jquery.maskedinput.min.js"></script>
+	  <script src="/assets/plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js"></script>
+	  <script src="/assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js"></script>
 		<!-- JS Customization -->
 		<script type="text/javascript" src="/assets/js/custom.js"></script>
 		<!-- JS Page Level -->
 		<script type="text/javascript" src="/assets/js/app.js"></script>
 		<script type="text/javascript" src="/assets/js/plugins/style-switcher.js"></script>
+    <script type="text/javascript" src="assets/js/forms/order.js"></script>
+	  <script type="text/javascript" src="/assets/js/forms/review.js"></script>
+	  <script type="text/javascript" src="/assets/js/forms/checkout.js"></script>
 		<script type="text/javascript">
 			jQuery(document).ready(function() {
 				App.init();
 				App.initParallaxBg();
+        OrderForm.initOrderForm();
+		  	ReviewForm.initReviewForm();
+			  CheckoutForm.initCheckoutForm();
 				StyleSwitcher.initStyleSwitcher();
 			});
 		</script>

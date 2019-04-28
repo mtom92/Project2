@@ -10,11 +10,11 @@
 						<div class="profile-bio">
 							<div class="row">
 								<div class="col-md-5">
-									<img class="img-responsive md-margin-bottom-10" src="<%= user.image%>" alt="">
+									<img class="img-responsive md-margin-bottom-10" src="<%= user.image%>" id="userphotos" alt="">
 									<a class="btn-u btn-u-sm" href="#">Change Picture</a>
 								</div>
 								<div class="col-md-7">
-									<h2><%= user.firstname%>  <%= user.lastname%></h2>
+									<h1><%= user.firstname%>  <%= user.lastname%></h1>
 									<span><strong>Job:</strong> Web Developer</span>
 									<span><strong>Birthday:</strong> <%= user.birthday%></span>
 									<hr>
@@ -73,31 +73,19 @@
                     <% if(job && job.length ){ %>
                      <% job.forEach( res=>{  %>
 
-                  <div class="panel panel-dark-blue">
+              <div class="panel panel-dark-blue">
 
-                   <div class="accordion" id="accordionExample<%= res.id %>">
-                   <div class="card text-white bg-dark mb-3" style="max-width: 80rem;">
+
                      <div class="panel-heading" id="headingOne<%= res.id %>">
 
                         <a  href="/jobs/<%= res.id %>">  <p><%= res.title %></p> </a>
-
-                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne<%= res.id %>" aria-expanded="true" aria-controls="collapseOne<%= res.id %>">
-                          Read Description
-                         </button>
                          <form method="post" action="/profile/jobs?_method=DELETE" >
                            <input type="hidden" name="jobId" value="<%= res.id %>">
                            <input type="submit" value="Delete">
                          </form>
                      </div>
-                      <div id="collapseOne<%= res.id %>" class="collapse" aria-labelledby="headingOne<%= res.id %>" data-parent="#accordionExample<%= res.id %>">
-                        <div class="panel-body ">
-                         <h5 class="card-title"><%= res.company %></h5>
-                         <p class="card-text"><%= res.description %></p>
-                        </div>
-                      </div>
-                   </div>
-                    </div>
- 						    	</div>
+
+ 						   </div>
 
                      <% }) %>
                         <% }else{ %>

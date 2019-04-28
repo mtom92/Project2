@@ -74,6 +74,11 @@ a:hover {
 	width: 200px;
 }
 
+#userphotos{
+	height: 200px;
+	width: 200px;
+}
+
 /*Boxed Layout
 ------------------------------------*/
 .wrapper {
