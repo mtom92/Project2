@@ -138,6 +138,10 @@ body.header-fixed-space-default {
 ----------------------------------------------------*/
 
 /*Navbar*/
+#jobhublogo{
+	height: 50px;
+	width: 140px;
+}
 .header {
 	z-index: 99;
 	background: #fff;
