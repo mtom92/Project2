@@ -18,9 +18,20 @@
 									<span><strong>Job:</strong> Web Developer</span>
 									<span><strong>Birthday:</strong> <%= user.birthday%></span>
 									<hr>
-									<%= user.bio%>
+                <%   if(user.bio){ %>
+                    <%= user.bio%>
+                  <hr>
+                <%  } else{ %>
+                    <h3>Tell us something about you !!!</h3>
+                  <hr>
+                <%  } %>
+
 								</div>
 							</div>
+              <br>
+              <div class="row">
+              <a class="btn btn-primary" href="#">Update Information</a>
+             </div>
 						</div><!--/end row-->
 
 						<hr>
@@ -67,25 +78,26 @@
 						<div class="panel panel-profile">
 							<div class="panel-heading overflow-h">
 								<h2 class="panel-title heading-sm pull-left"><i class="fa fa-briefcase"></i> Added Jobs</h2>
-								<a href="#"><i class="fa fa-cog pull-right"></i></a>
 							</div>
 							<div class="panel-body margin-bottom-40">
                     <% if(job && job.length ){ %>
                      <% job.forEach( res=>{  %>
+               <div class="col-md-12">
+							<!-- Aqua Panel -->
+							<div class="panel panel-aqua">
+								<div class="panel-heading">
 
-              <div class="panel panel-dark-blue">
+                  <form method="post" action="/profile/jobs?_method=DELETE" >
+                    <h3 class="panel-title"><a  href="/jobs/<%= res.id %>">  <%= res.title %> </a>
+                    <input type="hidden" name="jobId" value="<%= res.id %>">
+                    <input class="pull-right" type="submit" value="Delete">
+                      </h3>
+                  </form>
 
-
-                     <div class="panel-heading" id="headingOne<%= res.id %>">
-
-                        <a  href="/jobs/<%= res.id %>">  <p><%= res.title %></p> </a>
-                         <form method="post" action="/profile/jobs?_method=DELETE" >
-                           <input type="hidden" name="jobId" value="<%= res.id %>">
-                           <input type="submit" value="Delete">
-                         </form>
-                     </div>
-
- 						   </div>
+								</div>
+							</div>
+							<!-- End Aqua Panel -->
+						</div>
 
                      <% }) %>
                         <% }else{ %>
@@ -93,17 +105,10 @@
                           <% } %>
 							</div>
 						</div>
-						<!--End Timeline-->
-
-						<!--Timeline-->
-
-						<!--End Timeline-->
 
 						<hr>
 
-						<!--/end row-->
 					</div>
 				</div>
-				<!-- End Profile Content -->
 			</div>
 		</div>
