@@ -1,76 +1,107 @@
-<div class="container">
-  <div class="container">
-    <h1><%= job.title %></h1>
-    <img class="img-thumbnail logo" src="<%= job.logo%>" alt="">
+<div class="wrapper">
+  <div class="job-description">
+       <div class="container content">
 
-  <%  if(job.match.status  === "Inactive"){ %>
-      <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
-    Start Journey
-    </a>
-    <% } %>
+         <div class="row">
+           <!-- Left Inner -->
 
+             <div class="left-inner">
+               <img src="<%= job.logo%>" alt="logo">
+               <h3><%= job.title %></h3>
+                <%  if(job.match.status  === "Inactive"){ %>
+                    <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
+                  Start Journey
+                  </a>
+                  <% } %>
+                  <hr>
+
+                <%  if(job.how_to_apply){ %>
+                  <h3>Apply Here :</h3> <%=  job.how_to_apply %>
+                <%  } %>
+
+
+               <div class="overflow-h">
+                 <p class="hex"><%=  job.location %></p>
+               </div>
+
+               <hr>
+
+               <h2>Job Description</h2>
+               <p> <%= jobDescription %></p>
+
+               <hr>
+
+               <h2>Your Skills</h2>
+                <% if(skills && skills.length ){ %>
+                  <ul class="list-unstyled">
+                  <% skills.forEach(s => { %>
+                    <li><i class="fa fa-check color-green"></i> <%= s.name %></li>
+                    <% }) %>
+                </ul>  <% } else {%>
+                    <p>No skills added </p>
+                    <% } %>
+
+               <hr>
+
+               <h2>Job Skills</h2>
+                <% if(jobSkills && jobSkills.length ){ %>
+                  <ul class="list-unstyled">
+                  <% jobSkills.forEach(j => { %>
+                    <li><i class="fa fa-check color-green"></i> <%= j %></li>
+                    <% }) %>
+                </ul>  <% } else {%>
+                    <p>No Job skills founded</p>
+                    <% } %>
+
+               <hr>
+                <h2>Match</h2>
+                 <%= percentage.toFixed(1) %> %
+
+                <hr>
+
+               <h2> Job Information:</h2>
+                <% if ( job.match.status  === "Active"){ %>
+                  <div class="container">
+
+
+                  <% if(!!job.match.contact){   %>
+                     <p>Your contact in this company is: <%= job.match.contact%></p>
+                  <% }  else {%>
+                     <p>Your contact in this company is: No one </p>
+                     <% } %>
+                     <p>You like this job this much: <%= job.match.likeness%></p>
+                     <p>This job is in this phase: <%= job.match.currentPhase%></p>
+                  <% if(!!job.match.interviewDate){   %>
+                    <p>Next important date: <%= job.match.interviewDate%></p>
+                  <% }  else {%>
+                    <p>Next important date: Not define yet! </p>
+                    <% } %>
+                  <% if(!!job.match.interviewAddress){   %>
+                     <p>Interview Address: <%= job.match.interviewAddress%></p>
+                  <% }  else {%>
+                     <p>Interview Address: Not define yet! </p>
+                     <% } %>
+                  <% if(!!job.match.comment){   %>
+                    <p>Ideas: <%= job.match.comment%></p>
+                  <% }  else {%>
+                    <p>Ideas: No Ideas?? </p>
+                    <% } %>
+
+                    <%  if(job.match.status  === "Active"){ %>
+                        <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
+                      Update Information
+                      </a>
+                      <% } %>
+                  </div>
+                <% } %>
+             </div>
+
+           <!-- End Left Inner -->
+
+           <!-- Right Inner -->
+
+           <!-- End Right Inner -->
+         </div>
+       </div>
   </div>
-
-  <h5> <%= jobDescription %></h5>
 </div>
-
-<div class="container">
-  <h2> Your skills:</h2>
-<% if(skills && skills.length ){ %>
-  <% skills.forEach(s => { %>
-    <%= s.name %>
-    <% }) %>
-  <% } else {%>
-    <p>No skills added </p>
-    <% } %>
-</div>
-
-<div class="container">
-  <h2> Job skills:</h2>
-
-  <% jobSkills.forEach(j => { %>
-    <%= j %>
-  <% }) %>
-</div>
-
-<div class="container">
-  <h2> Match:</h2>
-
-  <%= percentage.toFixed(1) %> %
-
-</div>
-
-<% if ( job.match.status  === "Active"){ %>
-  <div class="container">
-    <h2> Job Information:</h2>
-
-  <% if(!!job.match.contact){   %>
-     <p>Your contact in this company is: <%= job.match.contact%></p>
-  <% }  else {%>
-     <p>Your contact in this company is: No one </p>
-     <% } %>
-     <p>You like this job this much: <%= job.match.likeness%></p>
-     <p>This job is in this phase: <%= job.match.currentPhase%></p>
-  <% if(!!job.match.interviewDate){   %>
-    <p>Next important date: <%= job.match.interviewDate%></p>
-  <% }  else {%>
-    <p>Next important date: Not define yet! </p>
-    <% } %>
-  <% if(!!job.match.interviewAddress){   %>
-     <p>Interview Address: <%= job.match.interviewAddress%></p>
-  <% }  else {%>
-     <p>Interview Address: Not define yet! </p>
-     <% } %>
-  <% if(!!job.match.comment){   %>
-    <p>Ideas: <%= job.match.comment%></p>
-  <% }  else {%>
-    <p>Ideas: No Ideas?? </p>
-    <% } %>
-
-    <%  if(job.match.status  === "Active"){ %>
-        <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
-      Update Information
-      </a>
-      <% } %>
-  </div>
-<% } %>

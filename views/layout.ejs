@@ -1,9 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- Web Fonts -->
+	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/css/style.css">
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="/assets/css/headers/header-default.css">
+	<link rel="stylesheet" href="/assets/css/footers/footer-v3.css">
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="/assets/plugins/animate.css">
+	<link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
+	<link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/image-hover/css/img-hover.css">
+  <link rel="stylesheet" href="/assets/plugins/brand-buttons/brand-buttons.css">
+	<link rel="stylesheet" href="/assets/plugins/brand-buttons/brand-buttons-inversed.css">
+
+	<!-- CSS Page Style -->
+	<link rel="stylesheet" href="/assets/css/pages/page_job.css">
+  <link rel="stylesheet" href="/assets/css/pages/profile.css">
+  <link rel="stylesheet" href="/assets/css/pages/page_log_reg_v1.css">
+
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="/assets/css/theme-colors/default.css" id="style_color">
+	<link rel="stylesheet" href="/assets/css/theme-skins/dark.css">
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="/assets/css/custom.css">
+  <!-- CSS files in static -->
+
     <!-- jQuery -->
     <script
      src="https://code.jquery.com/jquery-3.4.0.min.js"
@@ -22,12 +54,37 @@
     <div clas="container">
   <% include ./partials/alerts %>
       <%- body %>
+  <% include ./partials/footer %>
     </div>
     <script  type="text/javascript" src="/js/main.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-   <script type="text/javascript" >
 
-   </script>
+
+		<!-- JS Global Compulsory -->
+		<script type="text/javascript" src="/assets/plugins/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="/assets/plugins/jquery/jquery-migrate.min.js"></script>
+		<script type="text/javascript" src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<!-- JS Implementing Plugins -->
+		<script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
+		<script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>
+		<script type="text/javascript" src="/assets/plugins/jquery.parallax.js"></script>
+		<script type="text/javascript" src="/assets/plugins/image-hover/js/touch.js"></script>
+		<script type="text/javascript" src="/assets/plugins/image-hover/js/modernizr.js"></script>
+		<!-- JS Customization -->
+		<script type="text/javascript" src="/assets/js/custom.js"></script>
+		<!-- JS Page Level -->
+		<script type="text/javascript" src="/assets/js/app.js"></script>
+		<script type="text/javascript" src="/assets/js/plugins/style-switcher.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				App.init();
+				App.initParallaxBg();
+				StyleSwitcher.initStyleSwitcher();
+			});
+		</script>
+<!--[if lt IE 9]>
+	<script src="/assets/plugins/respond.js"></script>
+	<script src="/assets/plugins/html5shiv.js"></script>
+	<script src="/assets/plugins/placeholder-IE-fixes.js"></script>
+	<![endif]-->
   </body>
 </html>

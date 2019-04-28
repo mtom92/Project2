@@ -1,34 +1,43 @@
-<div class="container">
-  <h1>Log In</h1>
-  <div class="container">
-  <p>New to this site? Go to the <a href="/auth/signup">sign up page </a> instead</p>
-  </div>
-  <div class="container">
-  <form  action="/auth/login" method="post">
-    <div class="form-group row">
-        <label for="email" class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
-          <input type="email" class="form-control" name = "email" id="email" placeholder="Enter email">
-    </div>
-    </div>
-    <div class="form-group row">
-        <label for="password" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" name = "password" id="password" placeholder="Enter password">
-    </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-sm-10">
-        <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Log In</button>
-      </div>
-    </div>
-  </form>
-  </div>
+    <div class="wrapper">
+      <div class="container content">
+          <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+              <form class="reg-page" action="/auth/login" method="post">
+                  <p>New to this site? Just <a href="/auth/signup">sign up </a> instead</p>
+                <div class="reg-header">
+                  <h2>Login to your account</h2>
+                </div>
 
-  <hr>
+                <div class="input-group margin-bottom-20">
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                  <input type="email" class="form-control" name = "email" id="email" placeholder="Enter email">
+                </div>
+                <div class="input-group margin-bottom-20">
+                  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" name = "password" id="password" placeholder="Enter password">
+                </div>
+                <hr>
 
-  <h2> Or ....</h2>
-    <a href="/auth/facebook">
-      <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Facebook Log In</button>
-    </a>  
-</div>
+
+                  <button class="btn btn-block btn-quora" type="submit">
+                    Log in
+                  </button>
+
+                <div class="row">
+
+                    <h4>Use your Facebook account</h4>
+
+                      <a href="/auth/facebook">
+                         <button class="btn btn-block btn-facebook-inversed rounded">
+								          <i class="fa fa-facebook"></i> Facebook
+						           	</button>
+                    </a>
+
+
+                </div>
+              </form>
+
+               </div>
+          </div>
+        </div>
+    </div>

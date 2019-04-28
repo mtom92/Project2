@@ -1,17 +1,24 @@
+
 <div class="container">
-  <form  action="/search" method="post">
-      <div class="row form-group">
-         <div class="col">
-           <input type="text" class="form-control" name="jobDescription" placeholder="e.g. Phyton">
-         </div>
-         <div class="col">
-           <input type="text" class="form-control" name="jobLocation" placeholder="e.g. Seattle">
-         </div>
-         <div class="col">
-           <div class="col align-bottom">
-             <button type="submit" class="btn btn-outline-success">Search</button>
-           </div>
-         </div>
-      </div>
-  </form>
+  <div class="job-img-inputs">
+          <form action="/search" method="post">
+            <div class="row">
+  						<div class="col-sm-4 md-margin-bottom-10">
+  							<div class="input-group">
+  								<span class="input-group-addon"><i class="fa fa-tag"></i></span>
+  							  <input type="text" class="form-control" name="jobDescription" placeholder="e.g. Phyton">
+  							</div>
+  						</div>
+  						<div class="col-sm-4 md-margin-bottom-10">
+  							<div class="input-group">
+  								<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+  								<input type="text" class="form-control" name="jobLocation" placeholder="e.g. Seattle">
+  							</div>
+  						</div>
+  						<div class="col-sm-4">
+  							<button type="submit" class="btn-u btn-block btn-u-dark"> Search Job</button>
+  						</div>
+  					</div>
+          </form>
+			</div>
 </div>
