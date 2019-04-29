@@ -1141,11 +1141,15 @@
 }
 
 /*Funny Colored Boxes*/
+.funny-boxes-colored h1 {
+  color: #fff;
+}
 .funny-boxes-colored p,
 .funny-boxes-colored h2 a,
 .funny-boxes-colored .funny-boxes-img li,
 .funny-boxes-colored .funny-boxes-img li i {
 	color: #fff;
+  font-size: 20px;
 }
 
 /*Red Funny Box*/
