@@ -49,11 +49,16 @@
                     <% if(skill && skill.length ){ %>
 
                      <% skill.forEach( sk=>{  %>
-                      <form method="post" action="/profile/skill?_method=DELETE" >
-                         <input type="hidden" name="skillId" value="<%= sk.id %>">
-                          <input type="submit" value="Delete">
-                       </form>
-                        <%= sk.name%>
+                       <span>
+                        <form  id="killeses" method="post" action="/profile/skill?_method=DELETE" >
+                           <input type="hidden" name="skillId" value="<%= sk.id %>">
+                           <div class="btn-group">
+                            <span  class="btn btn-primary" ><%= sk.name%></span>
+                            <button type="submit" class="btn btn-primary">  <span aria-hidden="true">&times;</span></button>
+                           </div>
+                         </form>
+                       </span>
+
 
                      <% }) %>
 

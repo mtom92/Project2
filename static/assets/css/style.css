@@ -79,6 +79,10 @@ a:hover {
 	width: 200px;
 }
 
+#killeses{
+	display: inline-block;
+}
+
 /*Boxed Layout
 ------------------------------------*/
 .wrapper {

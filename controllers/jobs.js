@@ -66,9 +66,14 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
                  return m
                }
             })
-            
-            let percentage = (userSkills.length/foundSkillsTotal.length)*100
 
+            let foundSkillsMatched = foundSkillsTotal.filter(m =>{
+               if(m){
+                 return m
+               }
+            })
+
+            let percentage = (foundSkillsMatched.length/foundSkillsTotal.length)*100
 
              res.render('jobs/show', { job: foundJobs , jobDescription: description, jobSkills:uniqueMatches ,
                skills:user.skills, percentage:percentage })
