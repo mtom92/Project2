@@ -54,7 +54,7 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
               });
              let uniqueMatches = [...new Set(matches)];
              let matchesObj = []
-             let userSkills = {}
+             let userSkills = user.skills
              for (var i = 0; i < user.skills.length; i++) {
                userSkills[user.skills[i].name.toLowerCase()] = 0
              }
@@ -66,11 +66,9 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
                  return m
                }
             })
-            let foundSkillsExact = foundSkillsTotal.filter(skill =>{
-              return !!skill
-            });
+            
+            let percentage = (userSkills.length/foundSkillsTotal.length)*100
 
-            let percentage = (foundSkillsExact.length/foundSkillsTotal.length)*100
 
              res.render('jobs/show', { job: foundJobs , jobDescription: description, jobSkills:uniqueMatches ,
                skills:user.skills, percentage:percentage })
