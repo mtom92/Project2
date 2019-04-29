@@ -7,7 +7,7 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
 "Swift","Google AppsScript","Gosu","Groovy","Haskell","haXe","Heron","HTML5","HTML","HPL","HyperTalk","Icon","IDL","Informix-4GL","INTERCAL","Io","Ioke",
 "J","J#","JADE","Java","Java FX Script","JavaScript","JScript","JScript.NET","Julia","Korn Shell","Kotlin","LabVIEW","Ladder Logic","Lasso","Limbo","Lingo",
 "Lisp","Logo","Logtalk","LotusScript","LPC","Lua","Lustre","M4","MAD","Magic","Magik","Malbolge","MANTIS","Maple","Mathematica","MATLAB","Max/MSP","MAXScript",
-"MEL","Mercury","Mirah","Miva","ML","Monkey","Modula-2","Modula-3","MOO","Moto","MS-DOS Batch","MUMPS","MySQL","NATURAL","Nemerle","Net","Nimrod","NQC","NSIS","Nu",
+"MEL","Mercury","Mirah","Miva","ML","Monkey","Modula-2","Modula-3","MOO","Moto","MS-DOS Batch","MUMPS","MySQL","Nemerle","Net","Nimrod","NQC","NSIS","Nu",
 "NXT-G","Oberon","Object Rexx","Objective-C","Objective-J","OCaml","Occam","ooc","Opa","OpenCL","OpenEdge ABL","OPL","Oz","Paradox","Parrot","Pascal",
 "Perl","PHP","Pike","PILOT","PL/I","PL/SQL","Pliant","PostScript","POV-Ray","PowerBasic","PowerScript","PowerShell","Prolog","Puppet",
 "Pure Data","Python","Q","R","Racket","REALBasic","REBOL","Revolution","REXX","RPG OS/400","Ruby","Rust","S","S-PLUS","SAS","Sather","Scala",
@@ -25,6 +25,7 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
  //reference the models
  let db = require('../models')
  let loggedIn = require("../middleware/loggedIn")
+ let textVersion = require("textversionjs");
 
 
 
@@ -40,7 +41,8 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
        include: [db.match]
           })
           .then(function(foundJobs) {
-             let description = foundJobs.description
+             let description = textVersion(foundJobs.description)
+             console.log(description)
              let newDescription = description.split(/[,\s\/\.]/g)
              let matches = newDescription.map(function(word){
                  for (var i = 0; i < workwords.length; i++) {

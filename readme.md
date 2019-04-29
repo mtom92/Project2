@@ -250,6 +250,37 @@ Here is an example of adding an `age` field to the user table
 ## Steps To Use the app
 
 ### Home Page
-This is the landing page an as you can see the nav is at the top pf the page
+This is the landing page an as you can see the nav is at the top of the page
+
 
 ![Home Page](https://res.cloudinary.com/dnkav9q9s/image/upload/v1556553031/Home_Page_eosccs.png)
+
+### Search Page
+
+You can search for Job introducing a keyword and a location the pushing the search job button , then a list of jobs will appear and if you click in the name of the job you can see more information .
+
+![Founded Job](https://res.cloudinary.com/dnkav9q9s/image/upload/v1556553534/founded_job_ktqosw.png)
+
+If you click the add button and you are not logged in the next window will appear and you should log in or sign up
+
+![Founded Alert](https://res.cloudinary.com/dnkav9q9s/image/upload/v1556553720/Screen_Shot_2019-04-29_at_9.00.15_AM_l4iig1.png)
+
+If you are already logged in then the Job will appear in your job list
+
+### Log In Page
+
+You can log in signing up or using your facebook account
+
+![Log In](https://res.cloudinary.com/dnkav9q9s/image/upload/v1556553925/Screen_Shot_2019-04-29_at_9.05.04_AM_d0p5ol.png)
+
+### Sign Un Page
+
+Fill the form with all the required information to sign up , If you are missing something an alarm with appear at the top of the page
+
+![Sign Up](https://res.cloudinary.com/dnkav9q9s/image/upload/v1556554068/Screen_Shot_2019-04-29_at_9.07.30_AM_u1epak.png)
+
+### Profile Page
+
+Once you are logged in you will see something like the next image if you are in your phone or something similar but scaled if you are on your computer
+
+![Profile](https://res.cloudinary.com/dnkav9q9s/image/upload/v1556554261/Screen_Shot_2019-04-29_at_9.09.33_AM_ealaxn.png)
