@@ -23,10 +23,6 @@ router.get('/', loggedIn ,(req,res)=>{
   })
 })
 
-//get profile/admin
-router.get('/admin', adminLoggedIn ,(req,res)=>{
-  res.render('profile/admin')
-})
 
 //post
 router.post('/', (req,res) => {

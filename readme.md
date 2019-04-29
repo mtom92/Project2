@@ -1,4 +1,4 @@
-# Node/Express/PostreSQL Boilerplate
+# Job Hub
 
 This is a  Node/Express app with basic user authentication and authorization. This boilerplate to help in the creation of new projects that require a working auth, without the need to start from scratch.
 
@@ -10,7 +10,7 @@ This is a  Node/Express app with basic user authentication and authorization. Th
 * Error/Success message alerts
 * BCrypt for hashing passwords
 * Boostrap for styling
-* In statics/assets/.. there is templates for Boostrap
+* In statics/assets/.. there is templates(css , java, php) & images for Boostrap
 
 ### User Schema
 
@@ -93,8 +93,17 @@ By default, the following routes are provided
 | GET  | /auth/logout | controllers/auth.js | Removes User Session Data |
 | GET  | /auth/facebook | controllers/auth.js | Outgoing Request to Facebook |
 | GET  | /auth/callback/facebook | controllers/auth.js | Incoming Data from Facebook |
+| GET  | /search | controllers/search.js | Renders Search Page |
+| POST | /search | controllers/search.js | Handles Found Jobs |
+| GET  | /profile | controllers/profile.js | Finds user information and Renders Profile Page with that information |
+| POST | /profile | controllers/profile.js | Add skills and jobs that you saved |
+| DELETE | /profile/skill | controllers/profile.js | Remove skills |
+| DELETE | /profile/jobs | controllers/profile.js | Remove saved jobs |
+| GET  | /jobs/:id | controllers/jobs.js | Renders Individual Job Page |
+| GET  | /jobs/:id/edit | controllers/jobs.js | Renders Format to modify information about job application|
+| UPDATE | /jobs/:id/edited | controllers/jobs.js | Updates information about job application|
 
-## Steps To Use
+## Steps To Use this repo
 
 #### 1. Clone this repository, but with a different name
 
@@ -237,3 +246,10 @@ Here is an example of adding an `age` field to the user table
 * Add a product: Facebook login
     * Set Valid OAuth Redirect URL to `https://yoursite.com/auth/callback/facebook`
 * Copy the App Id and App Secret to the `.env` file
+
+## Steps To Use the app
+
+### Home Page
+This is the landing page an as you can see the nav is at the top pf the page
+
+![Home Page](/assets/img/homepage)
