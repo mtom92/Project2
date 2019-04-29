@@ -252,4 +252,4 @@ Here is an example of adding an `age` field to the user table
 ### Home Page
 This is the landing page an as you can see the nav is at the top pf the page
 
-![Home Page](./assets/img/homepage)
+![Home Page](https://res.cloudinary.com/dnkav9q9s/image/upload/v1556553031/Home_Page_eosccs.png)
