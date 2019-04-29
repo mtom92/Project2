@@ -39,28 +39,28 @@
    								<div class="panel-body">
    									<div class="row">
    										<div class="col-md-4">
-   											<img class="img-responsive" src="assets/img/main/img12.jpg" alt="">
+   											<img class="img-responsive" src="<%= res.company_logo%>" id="logoinresults" alt="">
                         <% if(user){ %>
                           <div class="form-group mx-sm-3 mb-2">
                             <form action="/profile" method="post">
                               <input type="hidden" name="title" value="<%= res.title %>">
                               <input type="hidden" name="company" value="<%= res.company %>">
-                              <input type="hidden" name="description" value="<%= res.description %>">
+                              <input type="hidden" name="description" value="<%res.description %>">
                               <input type="hidden" name="url" value="<%= res.company_url %>">
                               <input type="hidden" name="location" value="<%= res.location %>">
                               <input type="hidden" name="logo" value="<%= res.company_logo %>">
                               <input type="hidden" name="userId" value="<%= user.id %>">
-                              <button type="submit" id="addJob">Add Job</button>
+                              <button class="btn-u btn-u-aqua" id="addJob type="submit"><i class="fa fa-plus"></i>Add</button>
                              </form>
                           </div>
                          <% }else{ %>
                            <div class="form-group mx-sm-3 mb-2">
-                           <button type="button" id="jobButton">Add Job</button>
+                           <button class="btn-u btn-u-aqua" id="jobButton" type="button"><i class="fa fa-plus"></i> Add </button>
                            </div>
                       <%  } %>
    										</div>
    										<div class="col-md-8">
-   											<%= res.description %>
+   											<%- res.description %>
    										</div>
    									</div>
    								</div>

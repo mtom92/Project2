@@ -2,6 +2,7 @@
  let express = require('express');
 //declare an express router
  let router = express.Router();
+//require node modules
  let parser = require('body-parser');
  let request = require('request');
  let urlToCall = ""
@@ -25,6 +26,7 @@
      request( urlToCall , function(error , response , body){
      // Parse the data
        var result = JSON.parse(body);
+
        res.render('search/results', {result} )
         })
     })

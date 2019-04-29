@@ -22,7 +22,7 @@
                   <%  } else{ %>
                     <h3>Tell us something about you !!!</h3>
                   <%  } %>
-                  <a class="btn btn-primary" href="#">Update Information</a>                 
+                  <a class="btn btn-primary" href="#">Update Information</a>
 								</div>
 							</div>
 
@@ -87,8 +87,9 @@
 								<div class="panel-heading">
 
                   <form method="post" action="/profile/jobs?_method=DELETE" >
-                    <h3 class="panel-title"><a  href="/jobs/<%= res.id %>">  <%= res.title %> </a>
+                    <h3 class="panel-title"> <%= res.title %>
                     <input type="hidden" name="jobId" value="<%= res.id %>">
+                   <a  href="/jobs/<%= res.id %>"> <input class="pull-right" type="button" value="View"></a>
                     <input class="pull-right" type="submit" value="Delete">
                       </h3>
                   </form>
