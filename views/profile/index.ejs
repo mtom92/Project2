@@ -10,22 +10,19 @@
 						<div class="profile-bio">
 							<div class="row">
 								<div class="col-md-5">
-									<img class="img-responsive md-margin-bottom-10" src="<%= user.image%>" id="userphotos" alt="">
+									<img class="img-responsive md-margin-bottom-10" src="<%= user.image%>" id="userphotos" alt=""/>
 									<a class="btn-u btn-u-sm" href="#">Change Picture</a>
 								</div>
 								<div class="col-md-7">
-									<h1><%= user.firstname%>  <%= user.lastname%> </h1>
+                  <h1><%= user.firstname%>  <%= user.lastname%> </h1>
 									<span><strong>Job:</strong> Web Developer</span>
 									<span><strong>Birthday:</strong> <%= user.birthday%></span>
-									<hr>
-                <%   if(user.bio){ %>
-                    <%= user.bio%>
-                  <hr>
-                <%  } else{ %>
+                  <%   if(user.bio){ %>
+                    <h3><%= user.bio%></h3>
+                  <%  } else{ %>
                     <h3>Tell us something about you !!!</h3>
-                  <hr>
-                <%  } %>
-                 <a class="btn btn-primary" href="#">Update Information</a>
+                  <%  } %>
+                  <a class="btn btn-primary" href="#">Update Information</a>                 
 								</div>
 							</div>
 

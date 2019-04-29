@@ -95,20 +95,21 @@
   						<div class="funny-boxes funny-boxes-colored funny-boxes-blue ">
   							<div class="row">
   								<div class="col-md-12">
-  									<h2> Job Information:</h2>
+  									<h1> Job Information:</h1>
 
   									<ul class="list-unstyled">
-  										<li><i class="icon-append fa fa-map-o"></i>
+                      <h3>
+  										<li><i class="icon-append fa  fa-users"></i>
                         <% if(!!job.match.contact){   %>
                          Your contact in this company is: <%= job.match.contact%>
                       <% }  else {%>
                          Your contact in this company is: No one
                          <% } %>
                        </li>
-                       <li><i class="icon-append fa fa-map-o"></i>
+                       <li><i class="icon-append fa fa-thumbs-up"></i>
                           You like this job this much: <%= job.match.likeness%>
                        </li>
-                       <li><i class="icon-append fa fa-map-o"></i>
+                       <li><i class="icon-append fa fa-rocket"></i>
                           This job is in this phase: <%= job.match.currentPhase%>
                        </li>
                        <li><i class="icon-append fa fa-calendar"></i>
@@ -125,14 +126,14 @@
                             Interview Address: Not define yet!
                             <% } %>
                        </li>
-                       <li><i class="icon-append fa fa-map-o"></i>
+                       <li><i class="icon-append fa  fa-star-o"></i>
                          <% if(!!job.match.comment){   %>
                            Ideas: <%= job.match.comment%>
                          <% }  else {%>
                            Ideas: No Ideas??
                            <% } %>
                        </li>
-
+                     </h3>
   									</ul>
                     <%  if(job.match.status  === "Active"){ %>
                         <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
