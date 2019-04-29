@@ -77,7 +77,7 @@ passport.use(new FacebookStrategy({
     else{
       //this is a new user - we need to create them
       let userNameArr = profile.displayName.split(' ')
-      let photo = profile.photos.length ? profile.photos[0].value : 'https://res.cloudinary.com/dnkav9q9s/image/upload/v1555699331/sample.jpg'
+      let photo = profile.photos.length ? profile.photos[0].value : '../assets/img/testimonials/user.jpg'
       db.user.findOrCreate({
         where : { facebookId : profile.id },
         defaults : {

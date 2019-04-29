@@ -4,7 +4,7 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
 "cg","Ch","CHILL","CIL","CL OS/400","Clarion","Clipper","Clojure","CLU","COBOL","Cobra","CoffeeScript","ColdFusion","COMAL","Common Lisp","Coq",
 "cT","Curl","D","Dart","DCL","DCPU-16 ASM","Delphi/Object Pascal","DiBOL","Dylan","eC","Ecl","ECMAScript","EGL","Eiffel","Elixir","Emacs Lisp",
 "Erlang","Etoys","Euphoria","EXEC","F#","Factor","Falcon","Fancy","Fantom","Felix","Forth","Fortran","Fortress","Visual FoxPro","Gambas","GNU Octave",
-"Go","Google AppsScript","Gosu","Groovy","Haskell","haXe","Heron","HTML5","HTML","HPL","HyperTalk","Icon","IDL","Informix-4GL","INTERCAL","Io","Ioke",
+"Swift","Google AppsScript","Gosu","Groovy","Haskell","haXe","Heron","HTML5","HTML","HPL","HyperTalk","Icon","IDL","Informix-4GL","INTERCAL","Io","Ioke",
 "J","J#","JADE","Java","Java FX Script","JavaScript","JScript","JScript.NET","Julia","Korn Shell","Kotlin","LabVIEW","Ladder Logic","Lasso","Limbo","Lingo",
 "Lisp","Logo","Logtalk","LotusScript","LPC","Lua","Lustre","M4","MAD","Magic","Magik","Malbolge","MANTIS","Maple","Mathematica","MATLAB","Max/MSP","MAXScript",
 "MEL","Mercury","Mirah","Miva","ML","Monkey","Modula-2","Modula-3","MOO","Moto","MS-DOS Batch","MUMPS","MySQL","NATURAL","Nemerle","Net","Nimrod","NQC","NSIS","Nu",
@@ -54,7 +54,7 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
               });
              let uniqueMatches = [...new Set(matches)];
              let matchesObj = []
-             let userSkills = {}
+             let userSkills = user.skills
              for (var i = 0; i < user.skills.length; i++) {
                userSkills[user.skills[i].name.toLowerCase()] = 0
              }
@@ -66,11 +66,14 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
                  return m
                }
             })
-            let foundSkillsExact = foundSkillsTotal.filter(skill =>{
-              return !!skill
-            });
 
-            let percentage = (foundSkillsExact.length/foundSkillsTotal.length)*100
+            let foundSkillsMatched = foundSkillsTotal.filter(m =>{
+               if(m){
+                 return m
+               }
+            })
+
+            let percentage = (foundSkillsMatched.length/foundSkillsTotal.length)*100
 
              res.render('jobs/show', { job: foundJobs , jobDescription: description, jobSkills:uniqueMatches ,
                skills:user.skills, percentage:percentage })

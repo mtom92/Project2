@@ -1,61 +1,72 @@
-<div class="container">
-  <form  action="/search" method="post">
-      <div class="row form-group">
-         <div class="col">
-           <input type="text" class="form-control" name="jobDescription" placeholder="e.g. Phyton">
-         </div>
-         <div class="col">
-           <input type="text" class="form-control" name="jobLocation" placeholder="e.g. Seattle">
-         </div>
-         <div class="col">
-           <div class="col align-bottom">
-             <button type="submit" class="btn btn-outline-success">Search</button>
-           </div>
-         </div>
-      </div>
-  </form>
+<div class="sercher">
+  <div class="job-img-inputs">
+				<div class="container">
+          <form action="/search" method="post">
+            <div class="row">
+  						<div class="col-sm-4 md-margin-bottom-10">
+  							<div class="input-group">
+  								<span class="input-group-addon"><i class="fa fa-tag"></i></span>
+  							  <input type="text" class="form-control" name="jobDescription" placeholder="e.g. Phyton">
+  							</div>
+  						</div>
+  						<div class="col-sm-4 md-margin-bottom-10">
+  							<div class="input-group">
+  								<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+  								<input type="text" class="form-control" name="jobLocation" placeholder="e.g. Seattle">
+  							</div>
+  						</div>
+  						<div class="col-sm-4">
+  							<button type="submit" class="btn-u btn-block btn-u-dark"> Search Job</button>
+  						</div>
+  					</div>
+          </form>
+				</div>
+			</div>
 </div>
-<div class="container">
+<div class="wrapper">
   <% if(result && result.length ){ %>
    <% result.forEach( res=>{  %>
-     <div class="accordion" id="accordionExample<%= res.id %>">
-     <div class="card text-white bg-dark mb-3" style="max-width: 80rem;">
-       <div class="card-header form-inline" id="headingOne<%= res.id %>">
-          <div class="form-group mb-2">
-            <p><%= res.title %></p>
-          </div>
-          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne<%= res.id %>" aria-expanded="true" aria-controls="collapseOne<%= res.id %>">
-            Collapsible Group
-           </button>
-          <% if(user){ %>
-            <div class="form-group mx-sm-3 mb-2">
-              <form action="/profile" method="post">
-                <input type="hidden" name="title" value="<%= res.title %>">
-                <input type="hidden" name="company" value="<%= res.company %>">
-                <input type="hidden" name="description" value="<%= res.description %>">
-                <input type="hidden" name="url" value="<%= res.company_url %>">
-                <input type="hidden" name="location" value="<%= res.location %>">
-                <input type="hidden" name="logo" value="<%= res.company_logo %>">
-                <input type="hidden" name="userId" value="<%= user.id %>">
-                <button type="submit" id="addJob">Add Job</button>
-               </form>
-            </div>
-           <% }else{ %>
-             <div class="form-group mx-sm-3 mb-2">
-             <button type="button" id="jobButton">Add Job</button>
-             </div>
-        <%  } %>
-
-       </div>
-        <div id="collapseOne<%= res.id %>" class="collapse" aria-labelledby="headingOne<%= res.id %>" data-parent="#accordionExample<%= res.id %>">
-          <div class="card-body ">
-           <h5 class="card-title"><%= res.company %></h5>
-           <p class="card-text"><%= res.description %></p>
-          </div>
-        </div>
-
-     </div>
-      </div>
+     <div class="panel-group acc-v1" id="accordion-<%= res.id %>">
+   						<div class="panel panel-default">
+   							<div class="panel-heading">
+   								<h4 class="panel-title">
+   									<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-<%= res.id %>" href="#collapse-<%= res.id %>" aria-expanded="false">
+   										<p><%= res.title %></p>
+   									</a>
+   								</h4>
+   							</div>
+   							<div id="collapse-<%= res.id %>" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+   								<div class="panel-body">
+   									<div class="row">
+   										<div class="col-md-4">
+   											<img class="img-responsive" src="assets/img/main/img12.jpg" alt="">
+                        <% if(user){ %>
+                          <div class="form-group mx-sm-3 mb-2">
+                            <form action="/profile" method="post">
+                              <input type="hidden" name="title" value="<%= res.title %>">
+                              <input type="hidden" name="company" value="<%= res.company %>">
+                              <input type="hidden" name="description" value="<%= res.description %>">
+                              <input type="hidden" name="url" value="<%= res.company_url %>">
+                              <input type="hidden" name="location" value="<%= res.location %>">
+                              <input type="hidden" name="logo" value="<%= res.company_logo %>">
+                              <input type="hidden" name="userId" value="<%= user.id %>">
+                              <button type="submit" id="addJob">Add Job</button>
+                             </form>
+                          </div>
+                         <% }else{ %>
+                           <div class="form-group mx-sm-3 mb-2">
+                           <button type="button" id="jobButton">Add Job</button>
+                           </div>
+                      <%  } %>
+   										</div>
+   										<div class="col-md-8">
+   											<%= res.description %>
+   										</div>
+   									</div>
+   								</div>
+   							</div>
+   						</div>
+   	</div>
    <% }) %>
       <% }else{ %>
          <h4>No Jobs with that description</h4>

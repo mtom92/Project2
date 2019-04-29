@@ -1,76 +1,153 @@
-<div class="container">
-  <div class="container">
-    <h1><%= job.title %></h1>
-    <img class="img-thumbnail logo" src="<%= job.logo%>" alt="">
+<div class="wrapper">
+  <div class="job-description">
+             <div class="row">
+               <div class="row">
+                 <div class="col-md-3">
+                   <img id="joblogos" src="<%= job.logo%>" alt="logo">
+                   <h4> <span class="color-blue">Job Title :</span> <%= job.title %></h4>
+                    <%  if(job.match.status  === "Inactive"){ %>
+                        <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
+                      Start Journey
+                      </a>
+                      <% } %>
+                      <hr>
 
-  <%  if(job.match.status  === "Inactive"){ %>
-      <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
-    Start Journey
-    </a>
-    <% } %>
+                    <%  if(job.how_to_apply){ %>
+                      <h4>Apply Here : <%=  job.how_to_apply %></h4>
+                    <%  } %>
 
-  </div>
+                   <div class="overflow-h">
+                     <p class="hex"><%=  job.location %></p>
+                   </div>
+                 </div>
+                 <div class="col-md-8">
+                   <h2>Job Description</h2>
+                   <p> <%= jobDescription %></p>
+                 </div>
 
-  <h5> <%= jobDescription %></h5>
+               </div>
+
+               <hr>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <h2>Your Skills</h2>
+                   <% if(skills && skills.length ){ %>
+                     <ul class="list-unstyled">
+                     <% skills.forEach(s => { %>
+                       <li><i class="fa fa-check color-green"></i> <%= s.name %></li>
+                       <% }) %>
+                   </ul>  <% } else {%>
+                       <p>No skills added </p>
+                       <% } %>
+                </div>
+                <div class="col-md-4">
+                  <h2>Job Skills</h2>
+                   <% if(jobSkills && jobSkills.length ){ %>
+                     <ul class="list-unstyled">
+                     <% jobSkills.forEach(j => { %>
+                       <li><i class="fa fa-check color-green"></i> <%= j %></li>
+                       <% }) %>
+                   </ul>  <% } else {%>
+                       <p>No Job skills founded</p>
+                       <% } %>
+
+                </div>
+                <div class="col-md-4">
+                  <h2>Match</h2>
+                   <div class="circle" id="circle-1">
+                     <div class="circles-wrp" style="position:relative; display:inline-block;">
+                       <svg width="140" height="140">
+                         <path fill="transparent" stroke="#BEE3F7" stroke-width="2" d="M 69.98594654894504 1.0000014311557095 A 69 69 0 1 1 69.90416038427306 1.0000665596838587 Z"></path>
+                         <path fill="transparent" stroke="#3498DB" stroke-width="2" d="M 69.98594654894504 1.0000014311557095 A 69 69 0 1 1 2.2364051601485784 83.0036615758971 ">
+                         </path>
+                       </svg>
+                       <div class="circles-text-wrp" style="position:absolute; top:0; left:0; text-align:center; width:100%; font-size:35px; height:140px; line-height:140px;">
+                         <span class="circles-number">
+                           <span class="circles-number">72</span>
+                         </span>
+                         <span class="circles-text">%</span>
+                       </div>
+                     </div>
+                   </div>
+                </div>
+
+              </div>
+              <script type="text/javascript">
+                jQuery(document).ready(function() {
+                Circles.create({
+        		        id:         'circle-1',
+        		        percentage: <%= percentage.toFixed(0) %>,
+        		        radius:     80,
+        		        width:      3,
+        		        number:     <%= percentage.toFixed(0) %>,
+        		        text:       '%',
+        		        colors:     ['#eee', '#72c02c'],
+        		        duration:   2000
+        		    });
+              });
+              </script>
+              <hr>
+
+                <% if ( job.match.status  === "Active"){ %>
+                  <div class="container">
+                    <div class="col-md-6">
+  						<div class="funny-boxes funny-boxes-colored funny-boxes-blue ">
+  							<div class="row">
+  								<div class="col-md-12">
+  									<h1> Job Information:</h1>
+
+  									<ul class="list-unstyled">
+                      <h3>
+  										<li><i class="icon-append fa  fa-users"></i>
+                        <% if(!!job.match.contact){   %>
+                         Your contact in this company is: <%= job.match.contact%>
+                      <% }  else {%>
+                         Your contact in this company is: No one
+                         <% } %>
+                       </li>
+                       <li><i class="icon-append fa fa-thumbs-up"></i>
+                          You like this job this much: <%= job.match.likeness%>
+                       </li>
+                       <li><i class="icon-append fa fa-rocket"></i>
+                          This job is in this phase: <%= job.match.currentPhase%>
+                       </li>
+                       <li><i class="icon-append fa fa-calendar"></i>
+                         <% if(!!job.match.interviewDate){   %>
+                          Next important date: <%= job.match.interviewDate%>
+                         <% }  else {%>
+                          Next important date: Not define yet!
+                           <% } %>
+                       </li>
+                       <li><i class="icon-append fa fa-map-o"></i>
+                         <% if(!!job.match.interviewAddress){   %>
+                            Interview Address: <%= job.match.interviewAddress%>
+                         <% }  else {%>
+                            Interview Address: Not define yet!
+                            <% } %>
+                       </li>
+                       <li><i class="icon-append fa  fa-star-o"></i>
+                         <% if(!!job.match.comment){   %>
+                           Ideas: <%= job.match.comment%>
+                         <% }  else {%>
+                           Ideas: No Ideas??
+                           <% } %>
+                       </li>
+                     </h3>
+  									</ul>
+                    <%  if(job.match.status  === "Active"){ %>
+                        <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
+                      Update Information
+                      </a>
+                      <% } %>
+                  </div>
+                <% } %>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+
+             </div>
+             <hr>
+     </div>
 </div>
-
-<div class="container">
-  <h2> Your skills:</h2>
-<% if(skills && skills.length ){ %>
-  <% skills.forEach(s => { %>
-    <%= s.name %>
-    <% }) %>
-  <% } else {%>
-    <p>No skills added </p>
-    <% } %>
-</div>
-
-<div class="container">
-  <h2> Job skills:</h2>
-
-  <% jobSkills.forEach(j => { %>
-    <%= j %>
-  <% }) %>
-</div>
-
-<div class="container">
-  <h2> Match:</h2>
-
-  <%= percentage.toFixed(1) %> %
-
-</div>
-
-<% if ( job.match.status  === "Active"){ %>
-  <div class="container">
-    <h2> Job Information:</h2>
-
-  <% if(!!job.match.contact){   %>
-     <p>Your contact in this company is: <%= job.match.contact%></p>
-  <% }  else {%>
-     <p>Your contact in this company is: No one </p>
-     <% } %>
-     <p>You like this job this much: <%= job.match.likeness%></p>
-     <p>This job is in this phase: <%= job.match.currentPhase%></p>
-  <% if(!!job.match.interviewDate){   %>
-    <p>Next important date: <%= job.match.interviewDate%></p>
-  <% }  else {%>
-    <p>Next important date: Not define yet! </p>
-    <% } %>
-  <% if(!!job.match.interviewAddress){   %>
-     <p>Interview Address: <%= job.match.interviewAddress%></p>
-  <% }  else {%>
-     <p>Interview Address: Not define yet! </p>
-     <% } %>
-  <% if(!!job.match.comment){   %>
-    <p>Ideas: <%= job.match.comment%></p>
-  <% }  else {%>
-    <p>Ideas: No Ideas?? </p>
-    <% } %>
-
-    <%  if(job.match.status  === "Active"){ %>
-        <a href="/jobs/<%= job.id %>/edit" class="btn btn-info">
-      Update Information
-      </a>
-      <% } %>
-  </div>
-<% } %>
