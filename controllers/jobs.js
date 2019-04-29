@@ -22,7 +22,6 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
  let router = express.Router();
  let parser = require('body-parser');
  let request = require('request');
- let textVersion = require("textversionjs");
  //reference the models
  let db = require('../models')
  let loggedIn = require("../middleware/loggedIn")
@@ -41,7 +40,7 @@ let workwords = ["4th Dimension/4D","ABAP","ABC","ActionScript","Ada","Agilent V
        include: [db.match]
           })
           .then(function(foundJobs) {
-             let description = textVersion(foundJobs.description)
+             let description = foundJobs.description
              let newDescription = description.split(/[,\s\/\.]/g)
              let matches = newDescription.map(function(word){
                  for (var i = 0; i < workwords.length; i++) {
