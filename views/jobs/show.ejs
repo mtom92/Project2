@@ -116,7 +116,7 @@
                        </li>
                        <li><i class="icon-append fa fa-calendar"></i>
                          <% if(!!job.match.interviewDate){   %>
-                          Next important date: <%= job.match.interviewDate%>
+                          Next important date: <%= moment( job.match.interviewDate).format(shortDateFormat)%>
                          <% }  else {%>
                           Next important date: Not define yet!
                            <% } %>

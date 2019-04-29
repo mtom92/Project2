@@ -7,6 +7,8 @@ let flash = require('connect-flash');
 let layouts = require('express-ejs-layouts');
 let session = require('express-session');
 let methodOverride = require('method-override');
+let moment = require('moment');
+let shortDateFormat = 'LL';
 
 //Include passport configuration
 let passport = require('./config/passportConfig')
@@ -17,7 +19,10 @@ let app = express();
 app.set('view engine', 'ejs');
 //include (use) middle ware
 app.use('/',express.static('static'))
+app.locals.moment
 app.use(layouts);
+app.locals.moment = moment; // this makes moment available as a variable in every EJS page
+app.locals.shortDateFormat = shortDateFormat;
 app.use(express.urlencoded({ extended: false}))
 app.use(session({
   secret: process.env.SESSION_SECRET,
