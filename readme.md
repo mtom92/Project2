@@ -289,9 +289,9 @@ Once you are logged in you will see something like the next image
 
 that contains the next information:
 
-1.-At the top the generated information from your sign up or information from your facebook account
-2.-The section skills you can add and delete your Skills
-3.-Added Jobs all the jobs that you have save from your research you can delete them or click the view button and see all the information of this job
+1. At the top the generated information from your sign up or information from your facebook account
+2. The section skills you can add and delete your Skills
+3. Added Jobs all the jobs that you have save from your research you can delete them or click the view button and see all the information of this job
 
 ### Job Page
 
