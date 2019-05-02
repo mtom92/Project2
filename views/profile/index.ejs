@@ -15,7 +15,6 @@
 								</div>
 								<div class="col-md-7">
                   <h1><%= user.firstname%>  <%= user.lastname%> </h1>
-									<span><strong>Job:</strong> Web Developer</span>
 									<span><strong>Birthday:</strong> <%= moment( user.birthday).format(shortDateFormat)%></span>
                   <%   if(user.bio){ %>
                     <h3><%= user.bio%></h3>

@@ -281,6 +281,21 @@ Fill the form with all the required information to sign up , If you are missing 
 
 ### Profile Page
 
-Once you are logged in you will see something like the next image if you are in your phone or something similar but scaled if you are on your computer
+Once you are logged in you will see something like the next image
 
-![Profile](https://res.cloudinary.com/dnkav9q9s/image/upload/v1556554261/Screen_Shot_2019-04-29_at_9.09.33_AM_ealaxn.png)
+
+![Profile](https://res.cloudinary.com/dnkav9q9s/image/upload/v1556825602/Screen_Shot_2019-05-02_at_12.31.49_PM_itwz9p.png)
+
+
+that contains the next information:
+
+1.-At the top the generated information from your sign up or information from your facebook account
+2.-The section skills you can add and delete your Skills
+3.-Added Jobs all the jobs that you have save from your research you can delete them or click the view button and see all the information of this job
+
+### Job Page
+
+Every Job that you have save have their own page with the description and a comparison between your skills and some of the technical skills from the description of the job . You will se a button under the job title that will help to save information of the job if you decide to apply.
+
+
+![Job Page](https://res.cloudinary.com/dnkav9q9s/image/upload/v1556826050/Screen_Shot_2019-05-02_at_12.40.29_PM_tq0eu3.png)
