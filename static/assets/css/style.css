@@ -92,8 +92,12 @@ a:hover {
 /*Boxed Layout
 ------------------------------------*/
 .wrapper {
-	padding: 50px;
+	padding-right: 50px;
+	padding-left: 50px;
+	padding-top: 50px;
+	padding-bottom: 100px;
 	background: #fff;
+	margin-bottom: 30px;
 }
 
 .boxed-layout {

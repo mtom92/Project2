@@ -39,7 +39,12 @@
    								<div class="panel-body">
    									<div class="row">
    										<div class="col-md-4">
+                        <% if(res.company_logo){ %>
    											<img class="img-responsive" src="<%= res.company_logo%>" id="logoinresults" alt="">
+
+                        <% } else{ %>
+                          <img class="img-responsive" src="https://res.cloudinary.com/dnkav9q9s/image/upload/v1560109815/nologo_fpjpnn.jpg" id="logoinresults" alt="">
+                     <%  } %>
                         <% if(user){ %>
                           <div class="form-group mx-sm-3 mb-2">
                             <form action="/profile" method="post">
