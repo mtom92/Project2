@@ -44,6 +44,7 @@ label {
 a {
  color: #72c02c;
  text-decoration: none;
+ word-wrap: break-word;
 }
 
 a,
