@@ -5,8 +5,8 @@ $(document).on('click', '#jobButton', function(e) {
               showConfirmButton: false,
               html:
               '<p>Please</p>' + '<br>' +
-              '<a class="psign" href="/auth/signup">Sign Up</a>' +
-              '<a href="/auth/login">Log in </a> '
+              '<a id="asign" href="/auth/signup">Sign Up</a>   ' +
+              '   <a href="/auth/login">Log in </a> '
             })
         });
 
