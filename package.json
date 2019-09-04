@@ -31,8 +31,8 @@
     "passport-local": "^1.0.0",
     "pg": "^7.9.0",
     "request": "^2.88.0",
-    "sequelize": "^5.5.0",
-    "sequelize-cli": "^5.4.0",
+    "sequelize": "^5.18.1",
+    "sequelize-cli": "^5.5.1",
     "sweetalert2": "^8.8.7",
     "textversionjs": "^1.1.3"
   }

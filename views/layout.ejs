@@ -67,8 +67,8 @@
 		<script type="text/javascript" src="/assets/plugins/jquery/jquery-migrate.min.js"></script>
 		<script type="text/javascript" src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 		<!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="/assets/plugins/animated-headline/js/modernizr.js"></script>
 		<script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
-		<script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>
 		<script type="text/javascript" src="/assets/plugins/jquery.parallax.js"></script>
 		<script type="text/javascript" src="/assets/plugins/image-hover/js/touch.js"></script>
 		<script type="text/javascript" src="/assets/plugins/image-hover/js/modernizr.js"></script>
@@ -84,7 +84,7 @@
 		<!-- JS Page Level -->
 		<script type="text/javascript" src="/assets/js/app.js"></script>
 		<script type="text/javascript" src="/assets/js/plugins/style-switcher.js"></script>
-    <script type="text/javascript" src="assets/js/forms/order.js"></script>
+    <script type="text/javascript" src="/assets/js/forms/order.js"></script>
 	  <script type="text/javascript" src="/assets/js/forms/review.js"></script>
 	  <script type="text/javascript" src="/assets/js/forms/checkout.js"></script>
     <script type="text/javascript" src="/assets/js/plugins/style-switcher.js"></script>
@@ -100,6 +100,30 @@
 			  StyleSwitcher.initStyleSwitcher();
 		});
 		</script>
+
+   <!-- Cloudinary -->
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+    var myWidget = cloudinary.createUploadWidget({
+      cloudName: 'dnkav9q9s',
+      uploadPreset: 'jobdev'}, (error, result) => {
+        if (!error && result && result.event === "success") {
+          document.getElementById("image").value = result.info.url
+        }
+      }
+    )
+
+   if(document.getElementById("upload_widget")){
+     document.getElementById("upload_widget").addEventListener("click", function(){
+         myWidget.open();
+       });
+   }
+
+
+    </script>
+
+
 <!--[if lt IE 9]>
 	<script src="/assets/plugins/respond.js"></script>
 	<script src="/assets/plugins/html5shiv.js"></script>
